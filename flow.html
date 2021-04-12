@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>現金流量表</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="table-responsive-lg">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Date.</th>
+            <th scope="col">項目</th>
+            <th scope="col">收入</th>
+            <th scope="col">支出</th>
+            <th scope="col">剩餘</th>
+          </tr>
+        </thead>
+        <tbody id="summary-table">
+        </tbody>
+      </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+      let commas = function (value) {
+        let aIntNum = value.toString().split('.');
+        let iIntPart = aIntNum[0];
+        let iFlootPart = aIntNum.length > 1 ? `.${aIntNum[1]}` : '';
+        const rgx = /(\d+)(\d{3})/;
+
+        if (iIntPart.length >= 4) {
+          while (rgx.test(iIntPart)) { iIntPart = iIntPart.replace(rgx, `$1,$2`); }
+        }
+
+        return iIntPart + iFlootPart;
+      }
+      let itemList = [
+        // { name: '', date: '', income: 0, expense: 0 },
+        { name: '股本', date: '2020-09-01', income: 100000, expense: 0 },
+        { name: '9月廣告費', date: '2020-09-30', income: 0, expense: 45114 },
+        { name: '9月廣告服務費', date: '2020-10-05', income: 0, expense: 6767 },
+        { name: '股本', date: '2020-11-04', income: 30000, expense: 0 },
+        { name: '10月廣告服務費', date: '2020-10-05', income: 0, expense: 6359 },
+        { name: '10月廣告費', date: '2020-10-07', income: 0, expense: 43030 },
+        { name: '股本', date: '2020-12-03', income: 20000, expense: 0 },
+        { name: '11月廣告服務費', date: '2020-12-04', income: 0, expense: 5840 },
+        { name: '11月廣告費', date: '2020-12-08', income: 0, expense: 38913 },
+        { name: '股本', date: '2020-12-09', income: 150000, expense: 0 },
+        { name: '12月廣告服務費', date: '2021-01-08', income: 0, expense: 6000 },
+        { name: '12月廣告費', date: '2021-01-08', income: 0, expense: 50749 },
+        { name: '1月廣告服務費', date: '2021-02-07', income: 0, expense: 12000 },
+        { name: '1月廣告費', date: '2021-02-07', income: 0, expense: 40600 },
+        { name: '1月廣告費', date: '2021-02-07', income: 0, expense: 30150 },
+        { name: '9~1月盈利', date: '2021-03-05', income: 322600, expense: 0 },
+        { name: '2月廣告費', date: '2021-03-05', income: 0, expense: 40193 },
+        { name: '2月廣告服務費', date: '2021-03-05', income: 0, expense: 6000 },
+        { name: '3月廣告服務費', date: '2021-04-01', income: 0, expense: 12000 },
+      ]
+      let summary = 0;
+      let htmlStr = '';
+      itemList.forEach(i => {
+        summary = summary + i.income - i.expense;
+        htmlStr += `
+          <tr>
+            <td>${i.date}</td>
+            <td>${commas(i.name)}</td>
+            <td>${commas(i.income)}</td>
+            <td>${commas(i.expense)}</td>
+            <td>${commas(summary)}</td>
+          </tr>
+        `
+      })
+      document.getElementById('summary-table').innerHTML = htmlStr;
+    </script>
+  </body>
+</html>
