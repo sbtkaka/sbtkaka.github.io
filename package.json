@@ -1,0 +1,24 @@
+{
+  "name": "sbtkakaStatic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dashboard.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbtkaka/sbtkaka.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sbtkaka/sbtkaka.github.io/issues"
+  },
+  "homepage": "https://github.com/sbtkaka/sbtkaka.github.io#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "big.js": "^6.1.1"
+  }
+}

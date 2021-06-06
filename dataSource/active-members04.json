@@ -1,0 +1,182 @@
+[
+  {
+    "accountingDate": "2021-04-01",
+    "activeCount": "170",
+    "depositCount": "155",
+    "withdrawalCount": "44"
+  },
+  {
+    "accountingDate": "2021-04-02",
+    "activeCount": "181",
+    "depositCount": "174",
+    "withdrawalCount": "50"
+  },
+  {
+    "accountingDate": "2021-04-03",
+    "activeCount": "174",
+    "depositCount": "161",
+    "withdrawalCount": "43"
+  },
+  {
+    "accountingDate": "2021-04-04",
+    "activeCount": "157",
+    "depositCount": "142",
+    "withdrawalCount": "45"
+  },
+  {
+    "accountingDate": "2021-04-05",
+    "activeCount": "167",
+    "depositCount": "154",
+    "withdrawalCount": "47"
+  },
+  {
+    "accountingDate": "2021-04-06",
+    "activeCount": "172",
+    "depositCount": "157",
+    "withdrawalCount": "56"
+  },
+  {
+    "accountingDate": "2021-04-07",
+    "activeCount": "177",
+    "depositCount": "158",
+    "withdrawalCount": "52"
+  },
+  {
+    "accountingDate": "2021-04-08",
+    "activeCount": "161",
+    "depositCount": "150",
+    "withdrawalCount": "54"
+  },
+  {
+    "accountingDate": "2021-04-09",
+    "activeCount": "168",
+    "depositCount": "152",
+    "withdrawalCount": "56"
+  },
+  {
+    "accountingDate": "2021-04-10",
+    "activeCount": "165",
+    "depositCount": "156",
+    "withdrawalCount": "46"
+  },
+  {
+    "accountingDate": "2021-04-11",
+    "activeCount": "165",
+    "depositCount": "145",
+    "withdrawalCount": "58"
+  },
+  {
+    "accountingDate": "2021-04-12",
+    "activeCount": "171",
+    "depositCount": "163",
+    "withdrawalCount": "54"
+  },
+  {
+    "accountingDate": "2021-04-13",
+    "activeCount": "184",
+    "depositCount": "170",
+    "withdrawalCount": "56"
+  },
+  {
+    "accountingDate": "2021-04-14",
+    "activeCount": "173",
+    "depositCount": "158",
+    "withdrawalCount": "56"
+  },
+  {
+    "accountingDate": "2021-04-15",
+    "activeCount": "144",
+    "depositCount": "134",
+    "withdrawalCount": "46"
+  },
+  {
+    "accountingDate": "2021-04-16",
+    "activeCount": "188",
+    "depositCount": "180",
+    "withdrawalCount": "55"
+  },
+  {
+    "accountingDate": "2021-04-17",
+    "activeCount": "172",
+    "depositCount": "163",
+    "withdrawalCount": "62"
+  },
+  {
+    "accountingDate": "2021-04-18",
+    "activeCount": "172",
+    "depositCount": "154",
+    "withdrawalCount": "49"
+  },
+  {
+    "accountingDate": "2021-04-19",
+    "activeCount": "159",
+    "depositCount": "153",
+    "withdrawalCount": "50"
+  },
+  {
+    "accountingDate": "2021-04-20",
+    "activeCount": "145",
+    "depositCount": "134",
+    "withdrawalCount": "41"
+  },
+  {
+    "accountingDate": "2021-04-21",
+    "activeCount": "154",
+    "depositCount": "133",
+    "withdrawalCount": "47"
+  },
+  {
+    "accountingDate": "2021-04-22",
+    "activeCount": "156",
+    "depositCount": "142",
+    "withdrawalCount": "48"
+  },
+  {
+    "accountingDate": "2021-04-23",
+    "activeCount": "156",
+    "depositCount": "153",
+    "withdrawalCount": "64"
+  },
+  {
+    "accountingDate": "2021-04-24",
+    "activeCount": "173",
+    "depositCount": "163",
+    "withdrawalCount": "53"
+  },
+  {
+    "accountingDate": "2021-04-25",
+    "activeCount": "164",
+    "depositCount": "154",
+    "withdrawalCount": "58"
+  },
+  {
+    "accountingDate": "2021-04-26",
+    "activeCount": "191",
+    "depositCount": "181",
+    "withdrawalCount": "66"
+  },
+  {
+    "accountingDate": "2021-04-27",
+    "activeCount": "180",
+    "depositCount": "169",
+    "withdrawalCount": "59"
+  },
+  {
+    "accountingDate": "2021-04-28",
+    "activeCount": "179",
+    "depositCount": "168",
+    "withdrawalCount": "53"
+  },
+  {
+    "accountingDate": "2021-04-29",
+    "activeCount": "170",
+    "depositCount": "160",
+    "withdrawalCount": "61"
+  },
+  {
+    "accountingDate": "2021-04-30",
+    "activeCount": "204",
+    "depositCount": "191",
+    "withdrawalCount": "61"
+  }
+]

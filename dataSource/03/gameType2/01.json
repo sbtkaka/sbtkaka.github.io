@@ -1,0 +1,573 @@
+{
+  "records": [
+    {
+      "gameKindId": "1",
+      "details": [
+        {
+          "brand": "AW",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "-243.930000",
+          "memberCount": "12",
+          "txnCount": "2130",
+          "totalBets": "4239.500000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "BNG",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "744.250000",
+          "memberCount": "6",
+          "txnCount": "477",
+          "totalBets": "3067.500000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "CQ9",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "605.200000",
+          "memberCount": "9",
+          "txnCount": "1706",
+          "totalBets": "12372.300000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "FC",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "-137.800000",
+          "memberCount": "1",
+          "txnCount": "336",
+          "totalBets": "489.100000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "HBN",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "418.450000",
+          "memberCount": "8",
+          "txnCount": "1653",
+          "totalBets": "2320.650000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "JDB",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "23693.950000",
+          "memberCount": "48",
+          "txnCount": "24197",
+          "totalBets": "268724.050000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "JOKER",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "3730.500000",
+          "memberCount": "31",
+          "txnCount": "18890",
+          "totalBets": "184893.300000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "KISS918",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "15065.900000",
+          "memberCount": "41",
+          "txnCount": "792",
+          "totalBets": "0.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "MGP",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "1445.960000",
+          "memberCount": "9",
+          "txnCount": "2577",
+          "totalBets": "29803.260000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "PG",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "6565.100000",
+          "memberCount": "31",
+          "txnCount": "11100",
+          "totalBets": "65661.500000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "PNG",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "184.000000",
+          "memberCount": "3",
+          "txnCount": "177",
+          "totalBets": "474.400000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "PP",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "4429.500000",
+          "memberCount": "12",
+          "txnCount": "1795",
+          "totalBets": "13848.300000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "PTO",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "-1081.300000",
+          "memberCount": "8",
+          "txnCount": "2388",
+          "totalBets": "20939.500000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "RT",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "-1638.500000",
+          "memberCount": "9",
+          "txnCount": "787",
+          "totalBets": "5515.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "SG",
+          "gameKindCode": "1-",
+          "gameKindId": 1,
+          "netWin": "588.100000",
+          "memberCount": "11",
+          "txnCount": "3110",
+          "totalBets": "23516.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "239",
+      "txnCount": "72115",
+      "totalBets": "635864.36",
+      "netWin": "54369.38",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "2",
+      "details": [
+        {
+          "brand": "JOKER",
+          "gameKindCode": "2-",
+          "gameKindId": 2,
+          "netWin": "-5.350000",
+          "memberCount": "2",
+          "txnCount": "21",
+          "totalBets": "149.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "PG",
+          "gameKindCode": "2-",
+          "gameKindId": 2,
+          "netWin": "210.000000",
+          "memberCount": "1",
+          "txnCount": "17",
+          "totalBets": "470.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "3",
+      "txnCount": "38",
+      "totalBets": "619",
+      "netWin": "204.65",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "6",
+      "details": [
+        {
+          "brand": "AW",
+          "gameKindCode": "5-6-",
+          "gameKindId": 6,
+          "netWin": "-290.700000",
+          "memberCount": "3",
+          "txnCount": "206",
+          "totalBets": "2706.800000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "CQ9",
+          "gameKindCode": "5-6-",
+          "gameKindId": 6,
+          "netWin": "-83.000000",
+          "memberCount": "4",
+          "txnCount": "6",
+          "totalBets": "3571.900000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "FC",
+          "gameKindCode": "5-6-",
+          "gameKindId": 6,
+          "netWin": "34.500000",
+          "memberCount": "1",
+          "txnCount": "4",
+          "totalBets": "276.500000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "JDB",
+          "gameKindCode": "5-6-",
+          "gameKindId": 6,
+          "netWin": "1306.400000",
+          "memberCount": "10",
+          "txnCount": "576",
+          "totalBets": "44413.900000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "SG",
+          "gameKindCode": "5-6-",
+          "gameKindId": 6,
+          "netWin": "-8478.900000",
+          "memberCount": "5",
+          "txnCount": "87",
+          "totalBets": "352304.200000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "23",
+      "txnCount": "879",
+      "totalBets": "403273.3",
+      "netWin": "-7511.7",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "7",
+      "details": [
+        {
+          "brand": "JDB",
+          "gameKindCode": "5-7-",
+          "gameKindId": 7,
+          "netWin": "-34.200000",
+          "memberCount": "4",
+          "txnCount": "83",
+          "totalBets": "353.300000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "4",
+      "txnCount": "83",
+      "totalBets": "353.3",
+      "netWin": "-34.2",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "8",
+      "details": [
+        {
+          "brand": "SABA",
+          "gameKindCode": "8-",
+          "gameKindId": 8,
+          "netWin": "427.730000",
+          "memberCount": "6",
+          "txnCount": "25",
+          "totalBets": "2924.200000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "6",
+      "txnCount": "25",
+      "totalBets": "2924.2",
+      "netWin": "427.73",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "10",
+      "details": [
+        {
+          "brand": "AG",
+          "gameKindCode": "4-10-",
+          "gameKindId": 10,
+          "netWin": "1750.000000",
+          "memberCount": "1",
+          "txnCount": "22",
+          "totalBets": "3670.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "EVOA",
+          "gameKindCode": "4-10-",
+          "gameKindId": 10,
+          "netWin": "2677.500000",
+          "memberCount": "4",
+          "txnCount": "701",
+          "totalBets": "46157.500000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "MGP",
+          "gameKindCode": "4-10-",
+          "gameKindId": 10,
+          "netWin": "299.000000",
+          "memberCount": "2",
+          "txnCount": "14",
+          "totalBets": "607.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "SA",
+          "gameKindCode": "4-10-",
+          "gameKindId": 10,
+          "netWin": "946.850000",
+          "memberCount": "8",
+          "txnCount": "104",
+          "totalBets": "3971.150000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "SEXY",
+          "gameKindCode": "4-10-",
+          "gameKindId": 10,
+          "netWin": "1105.550000",
+          "memberCount": "9",
+          "txnCount": "1028",
+          "totalBets": "28770.450000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "24",
+      "txnCount": "1869",
+      "totalBets": "83176.1",
+      "netWin": "6778.9",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "12",
+      "details": [
+        {
+          "brand": "SEXY",
+          "gameKindCode": "4-12-",
+          "gameKindId": 12,
+          "netWin": "-15.000000",
+          "memberCount": "1",
+          "txnCount": "6",
+          "totalBets": "50.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "1",
+      "txnCount": "6",
+      "totalBets": "50",
+      "netWin": "-15",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "13",
+      "details": [
+        {
+          "brand": "AG",
+          "gameKindCode": "4-13-",
+          "gameKindId": 13,
+          "netWin": "0.000000",
+          "memberCount": "1",
+          "txnCount": "2",
+          "totalBets": "100.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "EVOA",
+          "gameKindCode": "4-13-",
+          "gameKindId": 13,
+          "netWin": "902.500000",
+          "memberCount": "1",
+          "txnCount": "2431",
+          "totalBets": "27997.500000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "SEXY",
+          "gameKindCode": "4-13-",
+          "gameKindId": 13,
+          "netWin": "52.000000",
+          "memberCount": "1",
+          "txnCount": "51",
+          "totalBets": "52.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "3",
+      "txnCount": "2484",
+      "totalBets": "28149.5",
+      "netWin": "954.5",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "15",
+      "details": [
+        {
+          "brand": "AG",
+          "gameKindCode": "4-15-",
+          "gameKindId": 15,
+          "netWin": "310.000000",
+          "memberCount": "1",
+          "txnCount": "14",
+          "totalBets": "710.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "EVOA",
+          "gameKindCode": "4-15-",
+          "gameKindId": 15,
+          "netWin": "-2290.730000",
+          "memberCount": "3",
+          "txnCount": "466",
+          "totalBets": "6614.270000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        },
+        {
+          "brand": "SEXY",
+          "gameKindCode": "4-15-",
+          "gameKindId": 15,
+          "netWin": "135.000000",
+          "memberCount": "2",
+          "txnCount": "115",
+          "totalBets": "1360.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "6",
+      "txnCount": "595",
+      "totalBets": "8684.27",
+      "netWin": "-1845.73",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "18",
+      "details": [
+        {
+          "brand": "EVOA",
+          "gameKindCode": "4-18-",
+          "gameKindId": 18,
+          "netWin": "262.500000",
+          "memberCount": "1",
+          "txnCount": "49",
+          "totalBets": "3112.500000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "1",
+      "txnCount": "49",
+      "totalBets": "3112.5",
+      "netWin": "262.5",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "21",
+      "details": [
+        {
+          "brand": "AW",
+          "gameKindCode": "5-21-",
+          "gameKindId": 21,
+          "netWin": "1300.000000",
+          "memberCount": "1",
+          "txnCount": "277",
+          "totalBets": "14144.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "1",
+      "txnCount": "277",
+      "totalBets": "14144",
+      "netWin": "1300",
+      "jackpot": "0",
+      "jpContribution": "0"
+    },
+    {
+      "gameKindId": "30",
+      "details": [
+        {
+          "brand": "SVL",
+          "gameKindCode": "30-",
+          "gameKindId": 30,
+          "netWin": "1060.000000",
+          "memberCount": "3",
+          "txnCount": "6",
+          "totalBets": "1060.000000",
+          "jackpot": "0.000000",
+          "jpContribution": "0.000000"
+        }
+      ],
+      "memberCount": "3",
+      "txnCount": "6",
+      "totalBets": "1060",
+      "netWin": "1060",
+      "jackpot": "0",
+      "jpContribution": "0"
+    }
+  ],
+  "sum": {
+    "memberCount": "314",
+    "txnCount": "78426",
+    "totalBets": "1181410.53",
+    "netWin": "55951.03",
+    "jackpot": "0",
+    "jpContribution": "0"
+  }
+}

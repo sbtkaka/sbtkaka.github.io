@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>現金流量表</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="table-responsive-lg">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Date.</th>
+            <th scope="col">項目</th>
+            <th scope="col">收入</th>
+            <th scope="col">支出</th>
+            <th scope="col">剩餘</th>
+          </tr>
+        </thead>
+        <tbody id="summary-table">
+        </tbody>
+      </table>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+      let commas = function (value) {
+        let aIntNum = value.toString().split('.');
+        let iIntPart = aIntNum[0];
+        let iFlootPart = aIntNum.length > 1 ? `.${aIntNum[1]}` : '';
+        const rgx = /(\d+)(\d{3})/;
+
+        if (iIntPart.length >= 4) {
+          while (rgx.test(iIntPart)) { iIntPart = iIntPart.replace(rgx, `$1,$2`); }
+        }
+
+        return iIntPart + iFlootPart;
+      }
+      let itemList = [
+        // { name: '', date: '', income: 0, expense: 0 },
+      ]
+      let summary = 0;
+      let htmlStr = '';
+      itemList.forEach(i => {
+        summary = summary + i.income - i.expense;
+        htmlStr += `
+          <tr>
+            <td>${i.date}</td>
+            <td>${commas(i.name)}</td>
+            <td>${commas(i.income)}</td>
+            <td>${commas(i.expense)}</td>
+            <td>${commas(summary)}</td>
+          </tr>
+        `
+      })
+      document.getElementById('summary-table').innerHTML = htmlStr;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+[
+  {
+    "accountingDate": "2021-03-01",
+    "activeCount": "146",
+    "depositCount": "135",
+    "withdrawalCount": "43"
+  },
+  {
+    "accountingDate": "2021-03-02",
+    "activeCount": "151",
+    "depositCount": "152",
+    "withdrawalCount": "57"
+  },
+  {
+    "accountingDate": "2021-03-03",
+    "activeCount": "151",
+    "depositCount": "142",
+    "withdrawalCount": "52"
+  },
+  {
+    "accountingDate": "2021-03-04",
+    "activeCount": "163",
+    "depositCount": "157",
+    "withdrawalCount": "53"
+  },
+  {
+    "accountingDate": "2021-03-05",
+    "activeCount": "169",
+    "depositCount": "159",
+    "withdrawalCount": "58"
+  },
+  {
+    "accountingDate": "2021-03-06",
+    "activeCount": "160",
+    "depositCount": "144",
+    "withdrawalCount": "48"
+  },
+  {
+    "accountingDate": "2021-03-07",
+    "activeCount": "141",
+    "depositCount": "140",
+    "withdrawalCount": "43"
+  },
+  {
+    "accountingDate": "2021-03-08",
+    "activeCount": "148",
+    "depositCount": "133",
+    "withdrawalCount": "25"
+  },
+  {
+    "accountingDate": "2021-03-09",
+    "activeCount": "140",
+    "depositCount": "133",
+    "withdrawalCount": "44"
+  },
+  {
+    "accountingDate": "2021-03-10",
+    "activeCount": "158",
+    "depositCount": "147",
+    "withdrawalCount": "58"
+  },
+  {
+    "accountingDate": "2021-03-11",
+    "activeCount": "150",
+    "depositCount": "144",
+    "withdrawalCount": "54"
+  },
+  {
+    "accountingDate": "2021-03-12",
+    "activeCount": "166",
+    "depositCount": "148",
+    "withdrawalCount": "56"
+  },
+  {
+    "accountingDate": "2021-03-13",
+    "activeCount": "150",
+    "depositCount": "139",
+    "withdrawalCount": "51"
+  },
+  {
+    "accountingDate": "2021-03-14",
+    "activeCount": "151",
+    "depositCount": "133",
+    "withdrawalCount": "36"
+  },
+  {
+    "accountingDate": "2021-03-15",
+    "activeCount": "151",
+    "depositCount": "130",
+    "withdrawalCount": "47"
+  },
+  {
+    "accountingDate": "2021-03-16",
+    "activeCount": "157",
+    "depositCount": "146",
+    "withdrawalCount": "63"
+  },
+  {
+    "accountingDate": "2021-03-17",
+    "activeCount": "156",
+    "depositCount": "142",
+    "withdrawalCount": "43"
+  },
+  {
+    "accountingDate": "2021-03-18",
+    "activeCount": "166",
+    "depositCount": "149",
+    "withdrawalCount": "44"
+  },
+  {
+    "accountingDate": "2021-03-19",
+    "activeCount": "153",
+    "depositCount": "150",
+    "withdrawalCount": "49"
+  },
+  {
+    "accountingDate": "2021-03-20",
+    "activeCount": "155",
+    "depositCount": "146",
+    "withdrawalCount": "50"
+  },
+  {
+    "accountingDate": "2021-03-21",
+    "activeCount": "143",
+    "depositCount": "128",
+    "withdrawalCount": "44"
+  },
+  {
+    "accountingDate": "2021-03-22",
+    "activeCount": "133",
+    "depositCount": "125",
+    "withdrawalCount": "41"
+  },
+  {
+    "accountingDate": "2021-03-23",
+    "activeCount": "139",
+    "depositCount": "128",
+    "withdrawalCount": "46"
+  },
+  {
+    "accountingDate": "2021-03-24",
+    "activeCount": "144",
+    "depositCount": "132",
+    "withdrawalCount": "37"
+  },
+  {
+    "accountingDate": "2021-03-25",
+    "activeCount": "168",
+    "depositCount": "165",
+    "withdrawalCount": "50"
+  },
+  {
+    "accountingDate": "2021-03-26",
+    "activeCount": "169",
+    "depositCount": "153",
+    "withdrawalCount": "44"
+  },
+  {
+    "accountingDate": "2021-03-27",
+    "activeCount": "180",
+    "depositCount": "159",
+    "withdrawalCount": "53"
+  },
+  {
+    "accountingDate": "2021-03-28",
+    "activeCount": "175",
+    "depositCount": "166",
+    "withdrawalCount": "50"
+  },
+  {
+    "accountingDate": "2021-03-29",
+    "activeCount": "163",
+    "depositCount": "147",
+    "withdrawalCount": "48"
+  },
+  {
+    "accountingDate": "2021-03-30",
+    "activeCount": "157",
+    "depositCount": "149",
+    "withdrawalCount": "61"
+  },
+  {
+    "accountingDate": "2021-03-31",
+    "activeCount": "172",
+    "depositCount": "163",
+    "withdrawalCount": "49"
+  }
+]
