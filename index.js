@@ -94,7 +94,7 @@ xhrGenerator(`/dataSource/summary-${targetMonth}.json`)
     <tr>
       <td>加總</td>
       <td>${total.totalBetAmount}</td>
-      <td>${total.totalNetWin}</td>
+      <td class="table-info">${total.totalNetWin}</td>
       <td>${total.totalRevenue}</td>
     </tr>
   `

@@ -3,7 +3,7 @@ const path = require('path');
 const Big = require('big.js');
 const date_month = process.argv[2];
 if (!date_month) return;
-const summaryDirRes = fs.readdirSync(path.resolve('dataSource', date_month), 'utf8');
+const summaryDirRes = fs.readdirSync(path.resolve('dataSource', date_month, 'summary'), 'utf8');
 
 const commas = function (value) {
   let aIntNum = value.toString().split('.');
@@ -33,7 +33,7 @@ let strRes = '{"summary":[';
 
 summaryDirRes.forEach((i, index) => {
   const date_day_name = i.replace('.json', '');
-  const abc = fs.readFileSync(path.resolve('dataSource', date_month, i), 'utf-8');
+  const abc = fs.readFileSync(path.resolve('dataSource', date_month, 'summary', i), 'utf-8');
   const temp = JSON.parse(abc);
   const newabc = Object.assign(temp, {
     "date_mmdd": `${date_month}-${date_day_name}`,

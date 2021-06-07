@@ -94,16 +94,35 @@
       "totalNetWin_p": "53,535.67",
       "totalRevenue_p": "38,954.50",
       "totalPromotionAmount_p": "18,683.97"
+    },
+    {
+      "registerCount": 37,
+      "depositCount": 631,
+      "totalDeposit": "294415.000000",
+      "totalWithdraw": "280312.000000",
+      "totalBetAmount": "1509801.210000",
+      "totalNetWin": "10579.657600",
+      "totalRevenue": "14103.00",
+      "jackpot": "0.000000",
+      "jpContribution": "0.000000",
+      "totalPromotionAmount": "327.36",
+      "date_mmdd": "06-06",
+      "totalDeposit_p": "294,415.00",
+      "totalWithdraw_p": "280,312.00",
+      "totalBetAmount_p": "1,509,801.21",
+      "totalNetWin_p": "10,579.66",
+      "totalRevenue_p": "14,103.00",
+      "totalPromotionAmount_p": "327.36"
     }
   ],
   "total": {
-    "registerCount": "210",
-    "depositCount": "3,194",
-    "totalDeposit": "1,093,035.70",
-    "totalWithdraw": "737,940.00",
-    "totalBetAmount": "7,042,469.29",
-    "totalNetWin": "425,527.47",
-    "totalRevenue": "355,095.70",
-    "totalPromotionAmount": "19,640.59"
+    "registerCount": "247",
+    "depositCount": "3,825",
+    "totalDeposit": "1,387,450.70",
+    "totalWithdraw": "1,018,252.00",
+    "totalBetAmount": "8,552,270.50",
+    "totalNetWin": "436,107.12",
+    "totalRevenue": "369,198.70",
+    "totalPromotionAmount": "19,967.95"
   }
 }
