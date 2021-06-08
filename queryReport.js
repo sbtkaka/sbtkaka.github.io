@@ -90,7 +90,7 @@ axios(loginOptions)
     let fileName = dd < 10 ? `0${dd}` : `${dd}`;
     axios(agentReportSummary(authData, postData))
     .then(({ data: { data }}) => {
-      fs.writeFile(path.resolve('dataSource', dirName, `${fileName}.json`), JSON.stringify(data), (err) => {
+      fs.writeFile(path.resolve('dataSource', dirName, 'summary', `${fileName}.json`), JSON.stringify(data), (err) => {
         console.log(`The file summary/${dirName}/${fileName} has been saved!`);
       });
     })
