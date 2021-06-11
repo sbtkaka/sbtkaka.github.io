@@ -86,7 +86,10 @@ xhrGenerator(`/dataSource/summary-${targetMonth}.json`)
     `;
     appendStr += (i.totalNetWin < 0) ? `<td class="table-danger">${i.totalNetWin_p}</td>` : `<td>${i.totalNetWin_p}</td>`;
     appendStr += (i.totalRevenue < 0) ? `<td class="table-warning">${i.totalRevenue_p}</td>` : `<td>${i.totalRevenue_p}</td>`;
-    appendStr += '</tr>';
+    appendStr += `
+        <td>${i.depositCount}</td>
+        <td>${i.totalDeposit_p}</td>
+      </tr>`;
     resultStr += appendStr;
   });
   
@@ -96,8 +99,10 @@ xhrGenerator(`/dataSource/summary-${targetMonth}.json`)
       <td>${total.totalBetAmount}</td>
       <td class="table-info">${total.totalNetWin}</td>
       <td>${total.totalRevenue}</td>
+      <td>${total.depositCount}</td>
+      <td>${total.totalDeposit}</td>
     </tr>
-  `
+  `;
   document.getElementById('summary_tbody').innerHTML = resultStr;
 })
 
