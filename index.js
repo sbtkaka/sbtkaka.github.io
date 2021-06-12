@@ -2,10 +2,14 @@
 feather.replace()
 // Graphs
 const thisMonth = new Date().getMonth();
+const year = new Date().getFullYear();
 let targetMonth = (thisMonth < 9)? `0${thisMonth+1}` : `${thisMonth+1}`;
+let lastMonth = (thisMonth < 9)? `0${thisMonth}` : `${thisMonth}`;
+let lastYear = year;
 let chartTitle = '本月註冊 / 活躍人數';
 let reportTitle = '本月壓碼量 / 營收 / 收益';
 let myChart;
+let myChart2;
 
 const searchString = window.document.location.search.replace('?', '');
 const parsed_qs = parseQueryString(searchString);
@@ -13,70 +17,127 @@ if (parsed_qs.month) {
   chartTitle = `${parsed_qs.month}月註冊 / 活躍人數`;
   reportTitle = `${parsed_qs.month}月壓碼量 / 營收 / 收益`;
   targetMonth = parsed_qs.month;
+  let lastMonthProcess = Number(parsed_qs.month) - 1;
+  lastMonth = (lastMonthProcess < 10)? `0${lastMonthProcess}` : lastMonthProcess;
+  if (targetMonth == '01') {
+    lastMonth = 12;
+    lastYear = year -1;
+  }
 }
 
 document.getElementById('chartTitle').innerText = chartTitle;
 document.getElementById('reportTitle').innerText = reportTitle;
 
-xhrGenerator(`/dataSource/summary-${targetMonth}.json`)
-.then(({ summary, total }) => {
-  xhrGenerator(`/dataSource/active-members${targetMonth}.json`)
-  .then((activeMemberDataArr) => {
-    myChart = new Chart(document.getElementById('myChart'), {
-      type: 'line',
-      data: {
-        labels: summary.map(i => i.date_mmdd.split('-')[1]),
-        // labels: activeMemberDataArr.map(i => i.accountingDate.split('-')[2]),
-        datasets: [
-          {
-            label: '活躍人數',
-            data: activeMemberDataArr.map(i => i.activeCount),
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#3080d0',
-            borderWidth: 4,
-            pointBackgroundColor: '#3080d0'
-          },
-          {
-            label: '註冊人數',
-            data: summary.map(i => i.registerCount),
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#ff6384',
-            borderWidth: 4,
-            pointBackgroundColor: '#ff6384'
-          },
-          // {
-          //   label: '存款次數',
-          //   data: activeMemberDataArr.map(i => i.depositCount),
-          //   lineTension: 0,
-          //   backgroundColor: 'transparent',
-          //   borderColor: '#f00',
-          //   borderWidth: 4,
-          //   pointBackgroundColor: '#f00'
-          // },
-          // {
-          //   label: '提款次數',
-          //   data: activeMemberDataArr.map(i => i.withdrawalCount),
-          //   lineTension: 0,
-          //   backgroundColor: 'transparent',
-          //   borderColor: '#888',
-          //   borderWidth: 4,
-          //   pointBackgroundColor: '#888'
-          // }
-        ]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: false
-            }
-          }]
+Promise.all([
+  xhrGenerator(`/dataSource/summary-${year}${targetMonth}.json`),
+  xhrGenerator(`/dataSource/summary-${lastYear}${lastMonth}.json`),
+  xhrGenerator(`/dataSource/active-members${year}${targetMonth}.json`),
+  xhrGenerator(`/dataSource/active-members${lastYear}${lastMonth}.json`),
+])
+.then(([
+  { summary, total },
+  { summary: lastMonthSummary, total: lastMonthTotal },
+  activeMemberDataArr,
+  lastMonthActiveMemberDataArr
+]) => {
+  let registerCountSubtractArray = [];
+  if (lastMonthSummary.length > summary.length) {
+    new Array(lastMonthSummary.length - summary.length);
+    registerCountSubtractArray = Array.apply(null, registerCountSubtractArray).map(() => 0);
+  }
+  // 補齊本月registerCount
+  myChart = new Chart(document.getElementById('myChart'), {
+    type: 'line',
+    data: {
+      // labels: summary.map(i => i.date_mmdd.split('-')[1]),
+      labels: activeMemberDataArr.map(i => i.accountingDate.split('-')[2]),
+      datasets: [
+        {
+          label: '活躍人數',
+          data: activeMemberDataArr.map(i => i.activeCount),
+          lineTension: 0,
+          backgroundColor: 'transparent',
+          borderColor: '#3080d0',
+          borderWidth: 4,
+          pointBackgroundColor: '#3080d0'
         },
-      }
-    })
+        {
+          label: '上個月活躍人數',
+          data: lastMonthActiveMemberDataArr.map(i => i.activeCount),
+          lineTension: 0,
+          backgroundColor: 'transparent',
+          borderColor: '#42cafd',
+          borderWidth: 4,
+          pointBackgroundColor: '#42cafd'
+        },
+        {
+          label: '註冊人數',
+          data: summary.map(i => i.registerCount).concat(registerCountSubtractArray),
+          lineTension: 0,
+          backgroundColor: 'transparent',
+          borderColor: '#E84855',
+          borderWidth: 4,
+          pointBackgroundColor: '#E84855'
+        },
+        {
+          label: '上個月註冊人數',
+          data: lastMonthSummary.map(i => i.registerCount),
+          lineTension: 0,
+          backgroundColor: 'transparent',
+          borderColor: '#ff9b71',
+          borderWidth: 4,
+          pointBackgroundColor: '#ff9b71'
+        },
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      },
+    }
   })
+
+  myChart2 = new Chart(document.getElementById('myChart2'), {
+    type: 'line',
+    data: {
+      // labels: summary.map(i => i.date_mmdd.split('-')[1]),
+      labels: activeMemberDataArr.map(i => i.accountingDate.split('-')[2]),
+      datasets: [
+        {
+          label: '存款次數',
+          data: summary.map(i => i.depositCount),
+          lineTension: 0,
+          backgroundColor: 'transparent',
+          borderColor: '#6bab90',
+          borderWidth: 4,
+          pointBackgroundColor: '#6bab90'
+        },
+        {
+          label: '上個月存款次數',
+          data: lastMonthSummary.map(i => i.depositCount),
+          lineTension: 0,
+          backgroundColor: 'transparent',
+          borderColor: '#d0e0b3',
+          borderWidth: 4,
+          pointBackgroundColor: '#d0e0b3'
+        },
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      },
+    }
+  })
+
   let resultStr = '';
   summary.forEach(i => {
     let appendStr = `
@@ -92,7 +153,7 @@ xhrGenerator(`/dataSource/summary-${targetMonth}.json`)
       </tr>`;
     resultStr += appendStr;
   });
-  
+
   resultStr = resultStr += `
     <tr>
       <td>加總</td>
