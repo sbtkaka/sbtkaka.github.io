@@ -142,7 +142,7 @@ Promise.all([
   summary.forEach(i => {
     let appendStr = `
       <tr>
-        <td onclick="mdToggle('${i.date_mmdd}')">${i.date_mmdd}</td>
+        <td onclick="mdToggle('${year}${i.date_mmdd}')">${i.date_mmdd}</td>
         <td>${i.totalBetAmount_p}</td>
     `;
     appendStr += (i.totalNetWin < 0) ? `<td class="table-danger">${i.totalNetWin_p}</td>` : `<td>${i.totalNetWin_p}</td>`;

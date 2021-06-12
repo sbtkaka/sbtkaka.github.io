@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const Big = require('big.js');
-const date_month = process.argv[2];
-if (!date_month) return;
-const summaryDirRes = fs.readdirSync(path.resolve('dataSource', date_month, 'summary'), 'utf8');
+const date_year_month = process.argv[2];
+if (!date_year_month) return;
+const summaryDirRes = fs.readdirSync(path.resolve('dataSource', date_year_month, 'summary'), 'utf8');
 
 const commas = function (value) {
   let aIntNum = value.toString().split('.');
@@ -33,10 +33,11 @@ let strRes = '{"summary":[';
 
 summaryDirRes.forEach((i, index) => {
   const date_day_name = i.replace('.json', '');
-  const abc = fs.readFileSync(path.resolve('dataSource', date_month, 'summary', i), 'utf-8');
+  const abc = fs.readFileSync(path.resolve('dataSource', date_year_month, 'summary', i), 'utf-8');
   const temp = JSON.parse(abc);
+  const date_monthArr = date_year_month.split('');
   const newabc = Object.assign(temp, {
-    "date_mmdd": `${date_month}-${date_day_name}`,
+    "date_mmdd": `${date_monthArr[4]}${date_monthArr[5]}-${date_day_name}`,
     "totalDeposit_p": commas(new Big(temp.totalDeposit).toFixed(2)),
     "totalWithdraw_p": commas(new Big(temp.totalWithdraw).toFixed(2)),
     "totalBetAmount_p": commas(new Big(temp.totalBetAmount).toFixed(2)),
@@ -68,4 +69,4 @@ total = Object.assign(total, {
 
 strRes += `],"total":${JSON.stringify(total)}}`;
 
-fs.writeFile(path.resolve('dataSource', `summary-${date_month}.json`), strRes, (error) => {console.error(error)});
+fs.writeFile(path.resolve('dataSource', `summary-${date_year_month}.json`), strRes, (error) => {console.error(error)});
