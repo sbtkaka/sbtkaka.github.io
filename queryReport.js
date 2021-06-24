@@ -69,8 +69,8 @@ axios(loginOptions)
   const thisYear = today.getFullYear();
   // const date_month = 4; // 月份要 -1 別忘記 (五月要填4)
   const date_month = today.getMonth(); // 4;
-  // const date_days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
-  const date_days = [today.getDate() - 1];
+  const date_days = [22,23];
+  // const date_days = [today.getDate() - 1];
   const dirName = date_month < 9 ? `${thisYear}0${date_month+1}` : `${thisYear}${date_month+1}`;
   fs.access(path.resolve('dataSource', dirName), fs.constants.R_OK | fs.constants.W_OK, (err) => {
     if (err) {
