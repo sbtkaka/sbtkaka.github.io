@@ -255,18 +255,18 @@ window.byPlatform = function(date_mmdd) {
     records.forEach(i => {
       let appendStr = `
       <tr>
-        <td>${i.brand}</td>
-        <td>${i.totalBets}</td>
+        <td>${commas(i.brand)}</td>
+        <td>${commas(i.totalBets)}</td>
       `;
-      appendStr += (i.netWin < 0) ? `<td class="table-warning">${i.netWin}</td>` : `<td>${i.netWin}</td>`;
+      appendStr += (i.netWin < 0) ? `<td class="table-warning">${commas(i.netWin)}</td>` : `<td>${commas(i.netWin)}</td>`;
       appendStr += '</tr>';
       resultStr += appendStr;
     })
     resultStr += `
         <tr>
           <td></td>
-          <td>${sum.totalBets}</td>
-          <td>${sum.netWin}</td>
+          <td>${commas(sum.totalBets)}</td>
+          <td>${commas(sum.netWin)}</td>
         </tr>
       </tbody>
     </table>
