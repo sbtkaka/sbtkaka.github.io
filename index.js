@@ -139,7 +139,7 @@ Promise.all([
   })
 
   let resultStr = '';
-  summary.forEach(i => {
+  summary.forEach((i, index) => {
     let appendStr = `
       <tr>
         <td onclick="mdToggle('${year}${i.date_mmdd}')">${i.date_mmdd}</td>
@@ -150,6 +150,7 @@ Promise.all([
     appendStr += `
         <td>${i.depositCount}</td>
         <td>${i.totalDeposit_p}</td>
+        <td>${activeMemberDataArr[index].activeCount}</td>
       </tr>`;
     resultStr += appendStr;
   });
@@ -162,6 +163,7 @@ Promise.all([
       <td>${total.totalRevenue}</td>
       <td>${total.depositCount}</td>
       <td>${total.totalDeposit}</td>
+      <td></td>
     </tr>
   `;
   document.getElementById('summary_tbody').innerHTML = resultStr;
@@ -296,17 +298,17 @@ window.byGameKind = function(date_mmdd) {
       let appendStr = `
       <tr>
         <td>${gameKindProcess(i.gameKindId)}</td>
-        <td>${i.totalBets}</td>
+        <td>${commas(i.totalBets)}</td>
       `;
-      appendStr += (i.netWin < 0) ? `<td class="table-warning">${i.netWin}</td>` : `<td>${i.netWin}</td>`;
+      appendStr += (i.netWin < 0) ? `<td class="table-warning">${commas(i.netWin)}</td>` : `<td>${commas(i.netWin)}</td>`;
       appendStr += '</tr>';
       resultStr += appendStr;
     })
     resultStr += `
         <tr>
           <td></td>
-          <td>${sum.totalBets}</td>
-          <td>${sum.netWin}</td>
+          <td>${commas(sum.totalBets)}</td>
+          <td>${commas(sum.netWin)}</td>
         </tr>
       </tbody>
     </table>
