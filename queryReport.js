@@ -67,10 +67,10 @@ axios(loginOptions)
 .then(({ data: { data: authData }}) => {
   const today = new Date();
   const thisYear = today.getFullYear();
-  const date_month = 6; // 月份要 -1 別忘記 (五月要填4)
-  // const date_month = today.getMonth(); // 4;
-  const date_days = [31];
-  // const date_days = [today.getDate() - 1];
+  // const date_month = 6; // 月份要 -1 別忘記 (五月要填4)
+  const date_month = today.getMonth(); // 4;
+  // const date_days = [31];
+  const date_days = [today.getDate() - 1];
   const dirName = date_month < 9 ? `${thisYear}0${date_month+1}` : `${thisYear}${date_month+1}`;
   fs.access(path.resolve('dataSource', dirName), fs.constants.R_OK | fs.constants.W_OK, (err) => {
     if (err) {
