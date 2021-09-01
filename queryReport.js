@@ -66,11 +66,32 @@ const activeMembers = (authData, data) => {
 axios(loginOptions)
 .then(({ data: { data: authData }}) => {
   const today = new Date();
-  const thisYear = today.getFullYear();
-  // const date_month = 6; // 月份要 -1 別忘記 (五月要填4)
-  const date_month = today.getMonth(); // 4;
-  // const date_days = [31];
-  const date_days = [today.getDate() - 1];
+  let thisYear = today.getFullYear();
+  // let date_month = 7; // 月份要 -1 別忘記 (五月要填4)
+  let date_month = today.getMonth(); // 4;
+  // let date_days = [31];
+  let date_days = [today.getDate() - 1];
+  // if (date_days[0] === 0) {
+  //   date_month = date_month - 1;
+  //   if (date_month == 11) thisYear = thisYear - 1;
+  //   switch (date_month) {
+  //     case 1: // 二月
+  //       date_days = 28;
+  //       break;
+  //     case 3: // 四月
+  //     case 5: // 六月
+  //     case 8: // 九月
+  //     case 10: // 十一月
+  //       date_days = 30;
+  //       break;
+  //     default:
+  //       date_days = 31;
+  //       break;
+  //   }
+  // }
+
+  // console.log(`資料抓取日期： ${thisYear}/${date_month+1}/${date_days}`);
+
   const dirName = date_month < 9 ? `${thisYear}0${date_month+1}` : `${thisYear}${date_month+1}`;
   fs.access(path.resolve('dataSource', dirName), fs.constants.R_OK | fs.constants.W_OK, (err) => {
     if (err) {
