@@ -191,10 +191,12 @@ const gameKindProcess = function(gameKind) {
       return '卡牌遊戲';
     case '4':
       return '真人視訊';
+    case '5':
+      return '街機遊戲';
     case '6':
-      return '街機';
-    case '7':
       return '捕魚機';
+    case '7':
+      return '水果機';
     case '8':
       return '體育';
     case '10':
@@ -221,16 +223,40 @@ const gameKindProcess = function(gameKind) {
       return '撲克';
     case '25':
       return '幸運轉輪';
-    case '30':
-      return '彩票遊戲';
-    case '34':
-      return '推幣機';
-    case '16':
-      return '牛牛';
+    case '26':
+      return '大富翁';
+    case '27':
+      return '骰子';
+    case '28':
+      return '博八博九';
+    case '29':
+      return '德州撲克';
     case '30':
       return '彩票遊戲';
     case '32':
-      return 'CockFight';
+      return '鬥雞';
+    case '34':
+      return '推幣機';
+    case '35':
+      return '色碟';
+    case '36':
+      return '魚蝦蟹';
+    case '37':
+      return '花旗骰';
+    case '38':
+      return '卡牌遊戲-其它';
+    case '39':
+      return '麻將牌';
+    case '40':
+      return '百練賽';
+    case '41':
+      return '快樂彩';
+    case '42':
+      return '真人視訊-其它';
+    case '43':
+      return '金融';
+    case '44':
+      return '金融-加密貨幣';
     default:
       return gameKind;
   }
