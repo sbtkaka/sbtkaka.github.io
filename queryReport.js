@@ -67,10 +67,10 @@ axios(loginOptions)
 .then(({ data: { data: authData }}) => {
   const today = new Date();
   let thisYear = today.getFullYear();
-  // let date_month = 7; // 月份要 -1 別忘記 (五月要填4)
-  let date_month = today.getMonth(); // 4;
-  // let date_days = [31];
-  let date_days = [today.getDate() - 1];
+  let date_month = 8; // 月份要 -1 別忘記 (五月要填4)
+  // let date_month = today.getMonth(); // 4;
+  let date_days = [30];
+  // let date_days = [today.getDate() - 1];
   // if (date_days[0] === 0) {
   //   date_month = date_month - 1;
   //   if (date_month == 11) thisYear = thisYear - 1;
