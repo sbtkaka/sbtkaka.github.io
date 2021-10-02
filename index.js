@@ -4,7 +4,7 @@ feather.replace()
 const thisMonth = new Date().getMonth();
 const year = new Date().getFullYear();
 let targetMonth = (thisMonth < 9)? `0${thisMonth+1}` : `${thisMonth+1}`;
-let lastMonth = (thisMonth < 9)? `0${thisMonth}` : `${thisMonth}`;
+let lastMonth = (thisMonth < 10)? `0${thisMonth}` : `${thisMonth}`;
 let lastYear = year;
 let chartTitle = '本月註冊 / 活躍人數';
 let reportTitle = '本月壓碼量 / 營收 / 收益';
