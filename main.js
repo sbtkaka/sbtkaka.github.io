@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-const bigNumber = require('big.js')
+const bigNumber = require('big.js');
+const moment = require('moment');
 const config = require('./prod.config');
 const knex = require('knex')(config.db);
 
@@ -13,11 +14,12 @@ const today = new Date();
 let thisYear = today.getFullYear();
 // let date_month = 8; // 月份要 -1 別忘記 (五月要填4)
 let date_month = today.getMonth();
-let date_days = [7,8];
+let date_days = [today.getDate() - 1];
 
 /*
   前置準備
 */
+const reportTime = '00:00:00';
 const constants = require(path.join(__dirname, 'constants'));
 const dirName = date_month < 9 ? `${thisYear}0${date_month+1}` : `${thisYear}${date_month+1}`;
 fs.access(path.resolve('dataSource', dirName), fs.constants.R_OK | fs.constants.W_OK, (err) => {
@@ -32,9 +34,14 @@ fs.access(path.resolve('dataSource', dirName), fs.constants.R_OK | fs.constants.
 
 date_days.forEach(
   async (dd) => {
-    const dateStartTime = new Date(thisYear, date_month, dd, 1).toJSON();
-    const dateEndTime = new Date(thisYear, date_month, dd, 1).toJSON();
-    const betWeen = [dateStartTime, dateEndTime];
+    const dateStartTime = moment(new Date(thisYear, date_month, dd, 1).toJSON());
+    const dateEndTime = moment(new Date(thisYear, date_month, dd, 1).toJSON());
+    const accountingStart = moment(dateStartTime.format(`YYYY-MM-DD ${reportTime}`));
+    const accountingEnd = moment(dateEndTime.format(`YYYY-MM-DD ${reportTime}`)).add(1, 'd').subtract(1, 's').endOf('second');
+    const betWeen = [
+      accountingStart.toDate(),
+      accountingEnd.toDate()
+    ];
     let fileName = dd < 10 ? `0${dd}` : `${dd}`;
 
     {
@@ -195,77 +202,104 @@ date_days.forEach(
         console.log(`The file gameType2/${dirName}/${fileName} has been saved!`);
       });
     }
-    // {
-    //   const activeMemberCount = knex
-    //   .select({ accountingDate: 'AccountingDate' })
-    //   .countDistinct({ activeCount: 'MemberId' })
-    //   .from('SummaryMemberBetDaily')
-    //   .where(function() {
-    //     this.whereBetween('AccountingDate', betWeen);
-    //     this.where('AgentCode', 'like', `4-`);
-    //   })
-    //   .groupBy('AccountingDate');
-
-    //   const depositMemberCount = knex
-    //     .select(
-    //       { accountingDate: 'AccountingDate' },
-    //     )
-    //     .countDistinct({ depositCount: 'MemberId' })
-    //     .from('SummaryMemberInfoDaily')
-    //     .where(function() {
-    //       this.whereBetween('AccountingDate', betWeen);
-    //       this.where('AgentCode', 'like', `4-`);
-    //       this.where(db.sqlBuilder().raw('IFNULL(Deposit, 0) + IFNULL(HandDeposit, 0) + IFNULL(OnlineDeposit, 0) + IFNULL(AutoCashInDeposit, 0)'), '>', 0);
-    //     })
-    //     .groupBy('AccountingDate');
-
-    //   const withdrawalMemberCount = knex
-    //     .select(
-    //       { accountingDate: 'AccountingDate' },
-    //     )
-    //     .countDistinct({ withdrawalCount: 'MemberId' })
-    //     .from('SummaryMemberInfoDaily')
-    //     .where(function() {
-    //       this.whereBetween('AccountingDate', betWeen);
-    //       this.where('AgentCode', 'like', `4-`);
-    //       this.where(db.sqlBuilder().raw('IFNULL(Withdraw, 0) + IFNULL(OnlineWithdraw, 0) + IFNULL(AutoCashOutWithdraw, 0)'), '>', 0);
-    //     })
-    //     .groupBy('AccountingDate');
-
-    //   const dailyActiveMemberMapByDateStr = _genMapByDateStr(activeMemberCount);
-    //   const dailyDepositMapByDateStr = _genMapByDateStr(depositMemberCount);
-    //   const dailyWithdrawalMapByDateStr = _genMapByDateStr(withdrawalMemberCount);
-
-    //   const searchDateStrs = generateDateStrsInRange(opts.accountingStart, opts.accountingEnd)
-    //   const results = searchDateStrs.map(accountingDate => {
-    //     let activeCount = 0;
-    //     let depositCount = 0;
-    //     let withdrawalCount = 0;
-
-    //     if (dailyActiveMemberMapByDateStr[accountingDate]) {
-    //       ({ activeCount } = dailyActiveMemberMapByDateStr[accountingDate]);
-    //     }
-    //     if (dailyDepositMapByDateStr[accountingDate]) {
-    //       ({ depositCount } = dailyDepositMapByDateStr[accountingDate]);
-    //     }
-    //     if (dailyWithdrawalMapByDateStr[accountingDate]) {
-    //       ({ withdrawalCount } = dailyWithdrawalMapByDateStr[accountingDate]);
-    //     }
-
-    //     fs.writeFile(path.resolve('dataSource', `active-members${dirName}.json`), JSON.stringify({
-    //       accountingDate,
-    //       activeCount,
-    //       depositCount,
-    //       withdrawalCount,
-    //     }), (err) => {
-    //       console.log('The active-members file has been saved!');
-    //     });
-
-    //   });
-
-    // }
   }
 )
+
+const createMonthData = async () => {
+  const start = moment(new Date(thisYear, date_month, 1, 1).toJSON());
+  const accountingStart = moment(start.format(`YYYY-MM-DD ${reportTime}`));
+  const accountingEnd = moment(accountingStart).add(1, 'M').subtract(1, 's').endOf('second');
+  const betWeen = [
+    accountingStart.toDate(),
+    accountingEnd.toDate(),
+  ]
+  const activeMemberCount = await knex
+  .select({ accountingDate: 'AccountingDate' })
+  .countDistinct({ activeCount: 'MemberId' })
+  .from('SummaryMemberBetDaily')
+  .where(function() {
+    this.whereBetween('AccountingDate', betWeen);
+    this.where('AgentCode', 'like', `4-%`);
+  })
+  .groupBy('AccountingDate');
+
+  const depositMemberCount = await knex
+    .select(
+      { accountingDate: 'AccountingDate' },
+    )
+    .countDistinct({ depositCount: 'MemberId' })
+    .from('SummaryMemberInfoDaily')
+    .where(function() {
+      this.whereBetween('AccountingDate', betWeen);
+      this.where('AgentCode', 'like', `4-`);
+      this.where(knex.raw('IFNULL(Deposit, 0) + IFNULL(HandDeposit, 0) + IFNULL(OnlineDeposit, 0) + IFNULL(AutoCashInDeposit, 0)'), '>', 0);
+    })
+    .groupBy('AccountingDate');
+
+  const withdrawalMemberCount = await knex
+    .select(
+      { accountingDate: 'AccountingDate' },
+    )
+    .countDistinct({ withdrawalCount: 'MemberId' })
+    .from('SummaryMemberInfoDaily')
+    .where(function() {
+      this.whereBetween('AccountingDate', betWeen);
+      this.where('AgentCode', 'like', `4-`);
+      this.where(knex.raw('IFNULL(Withdraw, 0) + IFNULL(OnlineWithdraw, 0) + IFNULL(AutoCashOutWithdraw, 0)'), '>', 0);
+    })
+    .groupBy('AccountingDate');
+
+  const dailyActiveMemberMapByDateStr = _genMapByDateStr(activeMemberCount);
+  const dailyDepositMapByDateStr = _genMapByDateStr(depositMemberCount);
+  const dailyWithdrawalMapByDateStr = _genMapByDateStr(withdrawalMemberCount);
+
+  const searchDateStrs = generateDateStrsInRange(accountingStart, accountingEnd)
+  const results = searchDateStrs.map(accountingDate => {
+    let activeCount = 0;
+    let depositCount = 0;
+    let withdrawalCount = 0;
+
+    if (dailyActiveMemberMapByDateStr[accountingDate]) {
+      ({ activeCount } = dailyActiveMemberMapByDateStr[accountingDate]);
+    }
+    if (dailyDepositMapByDateStr[accountingDate]) {
+      ({ depositCount } = dailyDepositMapByDateStr[accountingDate]);
+    }
+    if (dailyWithdrawalMapByDateStr[accountingDate]) {
+      ({ withdrawalCount } = dailyWithdrawalMapByDateStr[accountingDate]);
+    }
+    return {
+      accountingDate,
+      activeCount,
+      depositCount,
+      withdrawalCount,
+    };
+  });
+
+  fs.writeFile(path.resolve('dataSource', `active-members${dirName}.json`), JSON.stringify(results), (err) => {
+    console.log('The active-members file has been saved!');
+  });
+}
+
+const generateDateStrsInRange = (start, end) => {
+  const results = [];
+  const s = moment(start);
+  const e = moment(end);
+  while(s.isSameOrBefore(e, 'd')) {
+    results.push(s.format('YYYY-MM-DD'));
+    s.add(1, 'd');
+  }
+
+  return results;
+}
+
+const _genMapByDateStr = (countAry, timeColumn = 'accountingDate') => {
+  return _.keyBy(countAry, (val) => {
+    return moment(val[timeColumn]).format('YYYY-MM-DD');
+  });
+}
+
+createMonthData();
 
 const _getPromotionSum = async (betWeen) => {
   const [{ promotionAmountMemberAcc }] = await knex
