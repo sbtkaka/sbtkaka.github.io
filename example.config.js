@@ -12,7 +12,18 @@ const apiUrl = {
   activeMembers: `${baseUrl}/v2/report/overallReport/daily/activeMembers`
 }
 
+const db = {
+  client: 'mysql',
+  connection: {
+    host : 'localhost',
+    user : 'root',
+    password : '',
+    database : '7_0_0_ocms_v2'
+  }
+};
+
 module.exports = {
   loginData,
   apiUrl,
+  db,
 }
