@@ -32,19 +32,15 @@ fs.access(path.resolve('dataSource', dirName), fs.constants.R_OK | fs.constants.
   }
 });
 
-date_days.forEach(
-  async (dd) => {
+let summaryArr = date_days.map(
+  async function (dd) {
+    let fileName = dd < 10 ? `0${dd}` : `${dd}`;
     const dateStartTime = moment(new Date(thisYear, date_month, dd, 1).toJSON());
     const dateEndTime = moment(new Date(thisYear, date_month, dd, 1).toJSON());
     const accountingStart = moment(dateStartTime.format(`YYYY-MM-DD ${reportTime}`));
     const accountingEnd = moment(dateEndTime.format(`YYYY-MM-DD ${reportTime}`)).add(1, 'd').subtract(1, 's').endOf('second');
-    const betWeen = [
-      accountingStart.toDate(),
-      accountingEnd.toDate()
-    ];
-    let fileName = dd < 10 ? `0${dd}` : `${dd}`;
-
-    {
+    const betWeen = [accountingStart.toDate(), accountingEnd.toDate()];
+    return new Promise(async (resolve) => {
       const [{ registerCount }] = await knex
       .count({ registerCount: 0 })
       .from('Member')
@@ -117,9 +113,20 @@ date_days.forEach(
 
       fs.writeFile(path.resolve('dataSource', dirName, 'summary', `${fileName}.json`), JSON.stringify(summary), (err) => {
         console.log(`The file summary/${dirName}/${fileName} has been saved!`);
+        resolve();
       });
-    }
-    {
+    })
+  }
+)
+let gameDataArr = date_days.map(
+  async function (dd) {
+    let fileName = dd < 10 ? `0${dd}` : `${dd}`;
+    const dateStartTime = moment(new Date(thisYear, date_month, dd, 1).toJSON());
+    const dateEndTime = moment(new Date(thisYear, date_month, dd, 1).toJSON());
+    const accountingStart = moment(dateStartTime.format(`YYYY-MM-DD ${reportTime}`));
+    const accountingEnd = moment(dateEndTime.format(`YYYY-MM-DD ${reportTime}`)).add(1, 'd').subtract(1, 's').endOf('second');
+    const betWeen = [accountingStart.toDate(), accountingEnd.toDate()];
+    return new Promise(async (resolve) =>{
       const summaryMemberBetDailyByBrandAndGameKind = await knex
         .select({
           brand: 'SummaryMemberBetDaily.Brand',
@@ -179,10 +186,6 @@ date_days.forEach(
 
       const byBrand = { records: byBrandRecords, sum: doSum(byBrandRecords)};
 
-      fs.writeFile(path.resolve('dataSource', dirName, 'gameType1', `${fileName}.json`), JSON.stringify(byBrand), (err) => {
-        console.log(`The file gameType1/${dirName}/${fileName} has been saved!`);
-      });
-
       // by 遊戲種類(GameKind)
       const dataGroupByGameKind = _.groupBy(summaryMemberBetDailyByBrandAndGameKind, 'gameKindId');
       const byGameKindRecords = Object.keys(dataGroupByGameKind)
@@ -198,87 +201,94 @@ date_days.forEach(
 
       const byGameKind = { records: byGameKindRecords, sum: doSum(byGameKindRecords)};
 
-      fs.writeFile(path.resolve('dataSource', dirName, 'gameType2', `${fileName}.json`), JSON.stringify(byGameKind), (err) => {
-        console.log(`The file gameType2/${dirName}/${fileName} has been saved!`);
+      fs.writeFile(path.resolve('dataSource', dirName, 'gameType1', `${fileName}.json`), JSON.stringify(byBrand), (err) => {
+        console.log(`The file gameType1/${dirName}/${fileName} has been saved!`);
+        fs.writeFile(path.resolve('dataSource', dirName, 'gameType2', `${fileName}.json`), JSON.stringify(byGameKind), (err) => {
+          console.log(`The file gameType2/${dirName}/${fileName} has been saved!`);
+          resolve();
+        });
       });
-    }
+    })
   }
 )
 
-const createMonthData = async () => {
-  const start = moment(new Date(thisYear, date_month, 1, 1).toJSON());
-  const accountingStart = moment(start.format(`YYYY-MM-DD ${reportTime}`));
-  const accountingEnd = moment(accountingStart).add(1, 'M').subtract(1, 's').endOf('second');
-  const betWeen = [
-    accountingStart.toDate(),
-    accountingEnd.toDate(),
-  ]
-  const activeMemberCount = await knex
-  .select({ accountingDate: 'AccountingDate' })
-  .countDistinct({ activeCount: 'MemberId' })
-  .from('SummaryMemberBetDaily')
-  .where(function() {
-    this.whereBetween('AccountingDate', betWeen);
-    this.where('AgentCode', 'like', `4-%`);
+const createMonthData = async function() {
+  return new Promise(async (resolve) => {
+    const start = moment(new Date(thisYear, date_month, 1, 1).toJSON());
+    const accountingStart = moment(start.format(`YYYY-MM-DD ${reportTime}`));
+    const accountingEnd = moment(accountingStart).add(1, 'M').subtract(1, 's').endOf('second');
+    const betWeen = [
+      accountingStart.toDate(),
+      accountingEnd.toDate(),
+    ]
+    const activeMemberCount = await knex
+    .select({ accountingDate: 'AccountingDate' })
+    .countDistinct({ activeCount: 'MemberId' })
+    .from('SummaryMemberBetDaily')
+    .where(function() {
+      this.whereBetween('AccountingDate', betWeen);
+      this.where('AgentCode', 'like', `4-%`);
+    })
+    .groupBy('AccountingDate');
+
+    const depositMemberCount = await knex
+      .select(
+        { accountingDate: 'AccountingDate' },
+      )
+      .countDistinct({ depositCount: 'MemberId' })
+      .from('SummaryMemberInfoDaily')
+      .where(function() {
+        this.whereBetween('AccountingDate', betWeen);
+        this.where('AgentCode', 'like', `4-`);
+        this.where(knex.raw('IFNULL(Deposit, 0) + IFNULL(HandDeposit, 0) + IFNULL(OnlineDeposit, 0) + IFNULL(AutoCashInDeposit, 0)'), '>', 0);
+      })
+      .groupBy('AccountingDate');
+
+    const withdrawalMemberCount = await knex
+      .select(
+        { accountingDate: 'AccountingDate' },
+      )
+      .countDistinct({ withdrawalCount: 'MemberId' })
+      .from('SummaryMemberInfoDaily')
+      .where(function() {
+        this.whereBetween('AccountingDate', betWeen);
+        this.where('AgentCode', 'like', `4-`);
+        this.where(knex.raw('IFNULL(Withdraw, 0) + IFNULL(OnlineWithdraw, 0) + IFNULL(AutoCashOutWithdraw, 0)'), '>', 0);
+      })
+      .groupBy('AccountingDate');
+
+    const dailyActiveMemberMapByDateStr = _genMapByDateStr(activeMemberCount);
+    const dailyDepositMapByDateStr = _genMapByDateStr(depositMemberCount);
+    const dailyWithdrawalMapByDateStr = _genMapByDateStr(withdrawalMemberCount);
+
+    const searchDateStrs = generateDateStrsInRange(accountingStart, accountingEnd)
+    const results = searchDateStrs.map(accountingDate => {
+      let activeCount = 0;
+      let depositCount = 0;
+      let withdrawalCount = 0;
+
+      if (dailyActiveMemberMapByDateStr[accountingDate]) {
+        ({ activeCount } = dailyActiveMemberMapByDateStr[accountingDate]);
+      }
+      if (dailyDepositMapByDateStr[accountingDate]) {
+        ({ depositCount } = dailyDepositMapByDateStr[accountingDate]);
+      }
+      if (dailyWithdrawalMapByDateStr[accountingDate]) {
+        ({ withdrawalCount } = dailyWithdrawalMapByDateStr[accountingDate]);
+      }
+      return {
+        accountingDate,
+        activeCount,
+        depositCount,
+        withdrawalCount,
+      };
+    });
+
+    fs.writeFile(path.resolve('dataSource', `active-members${dirName}.json`), JSON.stringify(results), (err) => {
+      console.log('The active-members file has been saved!');
+      resolve();
+    });
   })
-  .groupBy('AccountingDate');
-
-  const depositMemberCount = await knex
-    .select(
-      { accountingDate: 'AccountingDate' },
-    )
-    .countDistinct({ depositCount: 'MemberId' })
-    .from('SummaryMemberInfoDaily')
-    .where(function() {
-      this.whereBetween('AccountingDate', betWeen);
-      this.where('AgentCode', 'like', `4-`);
-      this.where(knex.raw('IFNULL(Deposit, 0) + IFNULL(HandDeposit, 0) + IFNULL(OnlineDeposit, 0) + IFNULL(AutoCashInDeposit, 0)'), '>', 0);
-    })
-    .groupBy('AccountingDate');
-
-  const withdrawalMemberCount = await knex
-    .select(
-      { accountingDate: 'AccountingDate' },
-    )
-    .countDistinct({ withdrawalCount: 'MemberId' })
-    .from('SummaryMemberInfoDaily')
-    .where(function() {
-      this.whereBetween('AccountingDate', betWeen);
-      this.where('AgentCode', 'like', `4-`);
-      this.where(knex.raw('IFNULL(Withdraw, 0) + IFNULL(OnlineWithdraw, 0) + IFNULL(AutoCashOutWithdraw, 0)'), '>', 0);
-    })
-    .groupBy('AccountingDate');
-
-  const dailyActiveMemberMapByDateStr = _genMapByDateStr(activeMemberCount);
-  const dailyDepositMapByDateStr = _genMapByDateStr(depositMemberCount);
-  const dailyWithdrawalMapByDateStr = _genMapByDateStr(withdrawalMemberCount);
-
-  const searchDateStrs = generateDateStrsInRange(accountingStart, accountingEnd)
-  const results = searchDateStrs.map(accountingDate => {
-    let activeCount = 0;
-    let depositCount = 0;
-    let withdrawalCount = 0;
-
-    if (dailyActiveMemberMapByDateStr[accountingDate]) {
-      ({ activeCount } = dailyActiveMemberMapByDateStr[accountingDate]);
-    }
-    if (dailyDepositMapByDateStr[accountingDate]) {
-      ({ depositCount } = dailyDepositMapByDateStr[accountingDate]);
-    }
-    if (dailyWithdrawalMapByDateStr[accountingDate]) {
-      ({ withdrawalCount } = dailyWithdrawalMapByDateStr[accountingDate]);
-    }
-    return {
-      accountingDate,
-      activeCount,
-      depositCount,
-      withdrawalCount,
-    };
-  });
-
-  fs.writeFile(path.resolve('dataSource', `active-members${dirName}.json`), JSON.stringify(results), (err) => {
-    console.log('The active-members file has been saved!');
-  });
 }
 
 const generateDateStrsInRange = (start, end) => {
@@ -298,8 +308,6 @@ const _genMapByDateStr = (countAry, timeColumn = 'accountingDate') => {
     return moment(val[timeColumn]).format('YYYY-MM-DD');
   });
 }
-
-createMonthData();
 
 const _getPromotionSum = async (betWeen) => {
   const [{ promotionAmountMemberAcc }] = await knex
@@ -360,3 +368,7 @@ const _getPromotionSum = async (betWeen) => {
 }
 
 
+Promise.all([createMonthData()].concat(summaryArr, gameDataArr))
+.then(() => {
+  process.exit(1);
+})
