@@ -213,12 +213,18 @@ const gameKindProcess = function(gameKind) {
       return '骰寶';
     case '16':
       return '牛牛';
+    case '17':
+      return '炸金花';
     case '18':
       return '21點';
+    case '19':
+      return '鬥牛';
     case '20':
       return '多台';
     case '21':
       return '街機-其它';
+    case '22':
+      return '德州撲克';
     case '23':
       return '撲克';
     case '25':
@@ -233,8 +239,12 @@ const gameKindProcess = function(gameKind) {
       return '德州撲克';
     case '30':
       return '彩票遊戲';
+    case '31':
+      return 'PaiKang';
     case '32':
       return '鬥雞';
+    case '33':
+      return 'MegaBall';
     case '34':
       return '推幣機';
     case '35':
