@@ -410,7 +410,8 @@ const getChannelSummaryData = async function () {
 
     sqlStmt.orderBy('AccountingDate', 'asc');
 
-    let results =  await sqlStmt;
+    let resultSource =  await sqlStmt;
+    let results = resultSource.map((i) => { return Object.assign(i, { accountingDate: moment(i.accountingDate).format('YYYY-MM-DD') }) });
 
     fs.writeFile(path.resolve('dataSource', `channel-data${dirName}.json`), JSON.stringify(results), (err) => {
       console.log('The channel-data file has been saved!');

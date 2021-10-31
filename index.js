@@ -1,6 +1,5 @@
 'use strict'
 feather.replace()
-// Graphs
 const thisMonth = new Date().getMonth();
 const year = new Date().getFullYear();
 let targetMonth = (thisMonth < 9)? `0${thisMonth+1}` : `${thisMonth+1}`;
