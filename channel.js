@@ -22,26 +22,92 @@ if (parsed_qs.month) {
 
 document.getElementById('reportTitle').innerText = reportTitle;
 
-xhrGenerator(`/dataSource/channel-data${year}${targetMonth}.json`)
-.then((data) => {
-  let htmlStr = '';
-  data.forEach((i) => {
-    htmlStr += `
-      <tr>
-        <td>${i.accountingDate}</td>
-        <td>${i.name}</td>
-        <td>${commas(i.betAmount)}</td>
-        <td>${commas(i.netWin)}</td>
-        <td>${commas(i.revenue)}</td>
-        <td>${commas(i.deposit)}</td>
-        <td>${commas(i.newMember)}</td>
-        <td>${commas(i.effectiveMember)}</td>
-      </tr>
-    `
-  })
-  document.getElementById('summary-table').innerHTML = htmlStr;
+Array.prototype.groupBy = function(prop) {
+  return this.reduce(function(groups, item) {
+    const val = item[prop]
+    groups[val] = groups[val] || []
+    groups[val].push(item)
+    return groups
+  }, {})
+};
+
+let setSumDataInit = () => {
+  return {
+    betAmount: 0,
+    netWin: 0,
+    revenue: 0,
+    deposit: 0,
+    newMember: 0,
+    effectiveMember: 0,
+  };
+}
+
+var app = new Vue({
+  el: '#summary-table',
+  data: {
+    list: [],
+    listSource: [],
+    listSourceGroupByName: {},
+    minDate: '',
+    maxDate: '',
+    filters: {
+      startDate: '',
+      endDate: '',
+      channelName: '',
+    },
+    sum: setSumDataInit(),
+  },
+  mounted() {
+    xhrGenerator(`/dataSource/channel-data${year}${targetMonth}.json`)
+    .then((data) => {
+      this.list = data.sort(function(a, b) {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        // names must be equal
+        return 0;
+      });;
+      this.listSource = this.list;
+      this.processSumData();
+      // 設定 filter
+      this.minDate = data[0].accountingDate;
+      this.filters.startDate = data[0].accountingDate;
+      this.maxDate = data[data.length -1].accountingDate;
+      this.filters.endDate = data[data.length -1].accountingDate;
+      this.listSourceGroupByName = data.groupBy('name');
+    })
+    .catch(() => {
+      this.list = [];
+      this.listSource = [];
+    })
+  },
+  methods: {
+    processData() {
+      let results = this.filters.channelName ? this.listSourceGroupByName[this.filters.channelName].slice() : this.listSource.slice();
+      this.list = results.filter((item) => {
+        if (item.accountingDate >= this.filters.startDate && item.accountingDate <= this.filters.endDate) return item;
+      })
+      this.processSumData();
+    },
+    processSumData() {
+      let result = setSumDataInit();
+      this.list.forEach(element => {
+        result.betAmount += element.betAmount;
+        result.netWin += element.netWin;
+        result.revenue += element.revenue;
+        result.deposit += element.deposit;
+        result.newMember += element.newMember;
+        result.effectiveMember += element.effectiveMember;
+      });
+      this.sum = result;
+    }
+  },
+  watch: {
+    filters: {
+      handler: function(n) {
+        this.processData();
+      },
+      deep: true,
+    }
+  }
 })
-.catch(() => {
-  let htmlStr = '<tr><td colspan="8" style="text-align: center;"> 尚無資料，請詢問系統管理員 </td></tr>';
-  document.getElementById('summary-table').innerHTML = htmlStr;
-})
+

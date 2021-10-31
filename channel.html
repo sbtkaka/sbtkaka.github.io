@@ -57,7 +57,30 @@
             <h1 id="chartTitle" class="h2"></h1>
           </div>
           <h2 id="reportTitle"></h2>
-          <div class="table-responsive">
+          <div id="summary-table" class="table-responsive">
+            <form name="search-filter">
+              <fieldset>
+                <legend>日期</legend>
+                <label for="start"> 開始時間: </label>
+                <input type="date" id="start" name="trip-start" v-model="filters.startDate" v-bind:min="minDate" v-bind:max="maxDate">
+                <label for="end"> 結束時間: </label>
+                <input type="date" id="end" name="trip-end" v-model="filters.endDate" v-bind:min="minDate" v-bind:max="maxDate">
+              </fieldset>
+              <fieldset>
+                <legend>Channel 快速篩選</legend>
+                <input type="radio" id="channelNameAll" name="channelNameFilter" v-model="filters.channelName" value="" checked><label for="channelNameAll">全部資料</label>
+                <template v-for="(val, key) in listSourceGroupByName">
+                  <input
+                    type="radio"
+                    v-bind:id="`channelName${key}`"
+                    name="channelNameFilter"
+                    v-model="filters.channelName"
+                    v-bind:value="key">
+                    <label v-bind:for="`channelName${key}`">{{key}}</label>
+                </template>
+
+              </fieldset>
+            </form>
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
@@ -71,7 +94,30 @@
                   <th>活躍人數</th>
                 </tr>
               </thead>
-              <tbody id="summary-table">
+              <tbody v-if="list.length > 0">
+                <tr v-for="i in list">
+                  <td>{{ i.accountingDate }}</td>
+                  <td>{{ i.name }}</td>
+                  <td>{{ i.betAmount }}</td>
+                  <td v-bind:class="{ 'table-danger': i.netWin<0 }">{{ i.netWin }}</td>
+                  <td v-bind:class="{ 'table-warning': i.revenue<0 }">{{ i.revenue }}</td>
+                  <td>{{ i.deposit }}</td>
+                  <td>{{ i.newMember }}</td>
+                  <td>{{ i.effectiveMember }}</td>
+                </tr>
+                <tr>
+                  <td colspan="2">加總</td>
+                  <td>{{ sum.betAmount }}</td>
+                  <td>{{ sum.netWin }}</td>
+                  <td>{{ sum.revenue }}</td>
+                  <td>{{ sum.deposit }}</td>
+                  <td>{{ sum.newMember }}</td>
+                  <td>{{ sum.effectiveMember }}</td>
+                </tr>
+              </tbody>
+              <tbody v-else>
+                <tr><td colspan="8" style="text-align: center;"> 尚無資料，請詢問系統管理員 </td></tr>
+              </tbody>
             </table>
           </div>
         </main>
