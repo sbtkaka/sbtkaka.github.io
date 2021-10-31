@@ -367,8 +367,60 @@ const _getPromotionSum = async (betWeen) => {
   return new bigNumber(promotionAmountMemberAcc).plus(new bigNumber(promotionAmountWallet));
 }
 
+const getChannelSummaryData = async function () {
+  const start = moment(new Date(thisYear, date_month, 1, 1).toJSON());
+  const accountingStart = moment(start.format(`YYYY-MM-DD ${reportTime}`));
+  const accountingEnd = moment(accountingStart).add(1, 'M').subtract(1, 's').endOf('second');
+  const betWeen = [
+    accountingStart.toDate(),
+    accountingEnd.toDate(),
+  ]
 
-Promise.all([createMonthData()].concat(summaryArr, gameDataArr))
+  return new Promise(async (resolve) => {
+    const sqlStmt = knex
+    .select({
+      agentId: 'a.Id',
+      channelId: 'c.Id',
+      agentUsername: 'a.Name',
+      agentNickName: 'a.NickName',
+      channelCode: 'c.Code',
+      username: 'c.Username',
+      name: 'c.Name',
+    })
+    .from({ c: 'AgentChannel' })
+    .join('Agent as a', 'a.Id', 'c.AgentId')
+    .join('SummaryChannelDaily as s', 's.ChannelCode', 'c.Code')
+    .where('c.Status', 1)
+    .where('c.AgentId', 4)
+    .whereBetween('s.AccountingDate', betWeen);
+
+    sqlStmt
+    .select({
+      newMember: 's.NewMember',
+      effectiveMember: 's.EffectiveMember',
+      deposit: 's.Deposit',
+      withdraw: 's.Withdraw',
+      revenue: 's.Revenue',
+      betAmount: 's.BetAmount',
+      promotionAmount: 's.PromotionAmount',
+      netWin: 's.NetWin',
+      profitAmount: 's.ProfitAmount',
+      accountingDate: 's.AccountingDate',
+    });
+
+    sqlStmt.orderBy('AccountingDate', 'asc');
+
+    let results =  await sqlStmt;
+
+    fs.writeFile(path.resolve('dataSource', `channel-data${dirName}.json`), JSON.stringify(results), (err) => {
+      console.log('The channel-data file has been saved!');
+      resolve();
+    });
+
+  })
+};
+
+Promise.all([createMonthData(), getChannelSummaryData()].concat(summaryArr, gameDataArr))
 .then(() => {
   process.exit(1);
 })
