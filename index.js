@@ -1,10 +1,14 @@
 'use strict'
 feather.replace()
 const thisMonth = new Date().getMonth();
-const year = new Date().getFullYear();
+let year = new Date().getFullYear();
+let lastYear;
 let targetMonth = (thisMonth < 9)? `0${thisMonth+1}` : `${thisMonth+1}`;
 let lastMonth = (thisMonth < 10)? `0${thisMonth}` : `${thisMonth}`;
-let lastYear = year;
+if (targetMonth == '01') {
+  lastMonth = 12;
+}
+
 let chartTitle = '本月註冊 / 活躍人數';
 let reportTitle = '本月壓碼量 / 營收 / 收益';
 let myChart;
@@ -13,10 +17,13 @@ let myChart2;
 const searchString = window.document.location.search.replace('?', '');
 const parsed_qs = parseQueryString(searchString);
 if (parsed_qs.month) {
+  let dataArr = parsed_qs.month.split("-");
+  year = dataArr[0];
+  lastYear = year;
   chartTitle = `${parsed_qs.month}月註冊 / 活躍人數`;
   reportTitle = `${parsed_qs.month}月壓碼量 / 營收 / 收益`;
-  targetMonth = parsed_qs.month;
-  let lastMonthProcess = Number(parsed_qs.month) - 1;
+  targetMonth = dataArr[1];
+  let lastMonthProcess = Number(dataArr[1]) - 1;
   lastMonth = (lastMonthProcess < 10)? `0${lastMonthProcess}` : lastMonthProcess;
   if (targetMonth == '01') {
     lastMonth = 12;

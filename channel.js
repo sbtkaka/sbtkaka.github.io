@@ -1,18 +1,21 @@
 'use strict'
 feather.replace();
 const thisMonth = new Date().getMonth();
-const year = new Date().getFullYear();
+let year = new Date().getFullYear();
+let lastYear;
 let targetMonth = (thisMonth < 9)? `0${thisMonth+1}` : `${thisMonth+1}`;
 let lastMonth = (thisMonth < 10)? `0${thisMonth}` : `${thisMonth}`;
-let lastYear = year;
 let reportTitle = '本月渠道資料';
 
 const searchString = window.document.location.search.replace('?', '');
 const parsed_qs = parseQueryString(searchString);
 if (parsed_qs.month) {
-  targetMonth = parsed_qs.month;
+  let dataArr = parsed_qs.month.split("-");
+  year = dataArr[0];
+  lastYear = year;
+  targetMonth = dataArr[1];
   reportTitle = `${parsed_qs.month}月渠道資料`;
-  let lastMonthProcess = Number(parsed_qs.month) - 1;
+  let lastMonthProcess = Number(dataArr[1]) - 1;
   lastMonth = (lastMonthProcess < 10)? `0${lastMonthProcess}` : lastMonthProcess;
   if (targetMonth == '01') {
     lastMonth = 12;
