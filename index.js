@@ -5,9 +5,7 @@ let year = new Date().getFullYear();
 let lastYear;
 let targetMonth = (thisMonth < 9)? `0${thisMonth+1}` : `${thisMonth+1}`;
 let lastMonth = (thisMonth < 10)? `0${thisMonth}` : `${thisMonth}`;
-if (targetMonth == '01') {
-  lastMonth = 12;
-}
+lastYear = year;
 
 let chartTitle = '本月註冊 / 活躍人數';
 let reportTitle = '本月壓碼量 / 營收 / 收益';
@@ -25,10 +23,10 @@ if (parsed_qs.month) {
   targetMonth = dataArr[1];
   let lastMonthProcess = Number(dataArr[1]) - 1;
   lastMonth = (lastMonthProcess < 10)? `0${lastMonthProcess}` : lastMonthProcess;
-  if (targetMonth == '01') {
-    lastMonth = 12;
-    lastYear = year -1;
-  }
+}
+if (targetMonth == '01') {
+  lastMonth = 12;
+  lastYear = year -1;
 }
 
 document.getElementById('chartTitle').innerText = chartTitle;
