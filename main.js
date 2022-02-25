@@ -15,8 +15,8 @@ const today = new Date();
 let thisYear = today.getFullYear();
 // let date_month = 0; // 月份要 -1 別忘記 (五月要填4)
 let date_month = today.getMonth();
-let date_days = [22,23];
-// let date_days = [today.getDate() - 1];
+// let date_days = [22,23];
+let date_days = [today.getDate() - 1];
 
 /*
   前置準備
