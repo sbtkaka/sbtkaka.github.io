@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const Big = require('big.js');
 const date_year_month = process.argv[2];
-if (!date_year_month) return;
+if (!date_year_month) process.exit(1);
 const summaryDirRes = fs.readdirSync(path.resolve('dataSource', date_year_month, 'summary'), 'utf8');
 
 const commas = function (value) {
