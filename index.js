@@ -152,8 +152,8 @@ Promise.all([
     appendStr += (i.totalNetWin < 0) ? `<td class="table-danger">${i.totalNetWin_p}</td>` : `<td>${i.totalNetWin_p}</td>`;
     appendStr += (i.totalRevenue < 0) ? `<td class="table-warning">${i.totalRevenue_p}</td>` : `<td>${i.totalRevenue_p}</td>`;
     appendStr += `
-        <td>${i.depositCount}</td>
         <td>${i.totalDeposit_p}</td>
+        <td>${i.registerCount}</td>
         <td>${activeMemberDataArr[index].activeCount}</td>
       </tr>`;
     resultStr += appendStr;
@@ -165,8 +165,8 @@ Promise.all([
       <td>${total.totalBetAmount}</td>
       <td class="table-info">${total.totalNetWin}</td>
       <td>${total.totalRevenue}</td>
-      <td>${total.depositCount}</td>
       <td>${total.totalDeposit}</td>
+      <td>${total.registerCount}</td>
       <td></td>
     </tr>
   `;
