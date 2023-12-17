@@ -1,198 +1,115 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SBTKaka Report</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
-  </head>
-  <body>
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Sbtkaka</a>
-      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </header>
-    <div class="container-fluid">
-      <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-          <div class="position-sticky pt-3">
-            <ul id="nav_monthly_report" class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">
-                  <span data-feather="home"></span>
-                  首頁
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/channel.html">
-                  <span data-feather="user-check"></span>
-                  渠道資料
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-01">
-                  <span data-feather="file"></span>
-                  2021年1月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-02">
-                  <span data-feather="file"></span>
-                  2021年2月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-03">
-                  <span data-feather="file"></span>
-                  2021年3月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-04">
-                  <span data-feather="file"></span>
-                  2021年4月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-05">
-                  <span data-feather="file"></span>
-                  2021年5月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-06">
-                  <span data-feather="file"></span>
-                  2021年6月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-07">
-                  <span data-feather="file"></span>
-                  2021年7月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-08">
-                  <span data-feather="file"></span>
-                  2021年8月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-09">
-                  <span data-feather="file"></span>
-                  2021年9月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-10">
-                  <span data-feather="file"></span>
-                  2021年10月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-11">
-                  <span data-feather="file"></span>
-                  2021年11月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2021-12">
-                  <span data-feather="file"></span>
-                  2021年12月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2022-01">
-                  <span data-feather="file"></span>
-                  2022年1月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2022-02">
-                  <span data-feather="file"></span>
-                  2022年2月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2022-03">
-                  <span data-feather="file"></span>
-                  2022年3月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2022-04">
-                  <span data-feather="file"></span>
-                  2022年4月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2022-05">
-                  <span data-feather="file"></span>
-                  2022年5月份總覽
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html?month=2022-06">
-                  <span data-feather="file"></span>
-                  2022年6月份總覽
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 id="chartTitle" class="h2"></h1>
-          </div>
-          <canvas class="my-4" id="myChart" width="900" height="250"></canvas>
-          <canvas class="my-4" id="myChart2" width="900" height="250"></canvas>
-          <h2 id="reportTitle"></h2>
-          <div class="table-responsive">
-            <table class="table table-striped table-sm">
-              <thead>
-                <tr>
-                  <th>日期</th>
-                  <th>BetAmount</th>
-                  <th>NetWin</th>
-                  <th>Revenue</th>
-                  <th>存款總額</th>
-                  <th>註冊人數</th>
-                  <th>活躍人數</th>
-                </tr>
-              </thead>
-              <tbody id="summary_tbody"></tbody>
-            </table>
-          </div>
-        </main>
-      </div>
+
+<head>
+  <title>SBTKaka Report</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <link href="dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Sbtkaka</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </header>
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul id="nav_monthly_report" class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">
+                <span data-feather="home"></span>
+                首頁
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html?month=2023-12">
+                <span data-feather="file"></span>
+                2023年12月份總覽
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html?month=2023-11">
+                <span data-feather="file"></span>
+                2023年11月份總覽
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html?month=2023-10">
+                <span data-feather="file"></span>
+                2023年10月份總覽
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 id="chartTitle" class="h2"></h1>
+        </div>
+        <canvas class="my-4" id="myChart" width="900" height="250"></canvas>
+        <canvas class="my-4" id="myChart2" width="900" height="250"></canvas>
+        <h2 id="reportTitle"></h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>BetAmount</th>
+                <th>NetWin</th>
+                <th>Revenue</th>
+                <th>存款總額</th>
+                <th>註冊人數</th>
+                <th>活躍人數</th>
+              </tr>
+            </thead>
+            <tbody id="summary_tbody"></tbody>
+          </table>
+        </div>
+      </main>
     </div>
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">遊戲報表</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">遊戲報表</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <button type="button" class="btn btn-info" onclick="byPlatform()">根據平台商分類</button>
+          <button type="button" class="btn btn-primary" onclick="byGameKind()">根據遊戲類別分類</button>
+          <div id="game-report-table">
+            <table class="table table-striped table-bordered"></table>
           </div>
-          <div class="modal-body">
-            <button type="button" class="btn btn-info" onclick="byPlatform()">根據平台商分類</button>
-            <button type="button" class="btn btn-primary" onclick="byGameKind()">根據遊戲類別分類</button>
-            <div id="game-report-table">
-              <table  class="table table-striped table-bordered"></table>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <script src="./utils.js"></script>
-    <script src="./index.js"></script>
-  </body>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"></script>
+  <script src="./utils.js"></script>
+  <script src="./index.js"></script>
+</body>
+
 </html>

@@ -11,4 +11,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 
-prod.config.js
+config.js

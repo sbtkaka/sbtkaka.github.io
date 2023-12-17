@@ -1,0 +1,34 @@
+const fs = require("fs");
+const path = require("path");
+const format = require("date-fns/format");
+// setting
+const { reportURL } = require(path.resolve("config.js"));
+
+const summary = (requestInstance, targetDate) => {
+  return new Promise((resolve, reject) => {
+    requestInstance({
+      url: reportURL.summary,
+      data: {
+        agentId: 4,
+        endTime: targetDate.toISOString(),
+        startTime: targetDate.toISOString(),
+      },
+    }).then(({ data }) => {
+      let dirName = `${format(targetDate, "yyyyMM")}`;
+      let fileName = `${format(targetDate, "dd")}`;
+      fs.writeFile(
+        path.resolve("dataSource", dirName, "summary", `${fileName}.json`),
+        JSON.stringify(data),
+        (error) => {
+          console.log(`The summary file has been saved!`);
+          if (error) reject(error);
+          resolve();
+        }
+      );
+    });
+  });
+};
+
+module.exports = {
+  summary,
+};
