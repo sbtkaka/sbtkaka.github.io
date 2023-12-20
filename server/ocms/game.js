@@ -25,7 +25,9 @@ const gameTypeReq = (requestInstance, targetDate) => {
           resolve();
         }
       );
-    });
+    }).catch((e) => {
+      console.log(`gameType1-${dirName}${fileName}`); console.error(JSON.parse(e))
+    });;
   });
 };
 
@@ -50,7 +52,9 @@ const gameProviderReq = (requestInstance, targetDate) => {
           resolve();
         }
       );
-    });
+    }).catch((e) => {
+      console.log(`gameType2-${dirName}${fileName}`); console.error(JSON.parse(e))
+    });;
   });
 };
 

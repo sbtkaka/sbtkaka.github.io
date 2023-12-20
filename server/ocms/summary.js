@@ -25,6 +25,8 @@ const summary = (requestInstance, targetDate) => {
           resolve();
         }
       );
+    }).catch((e) => {
+      console.log(`summary-${dirName}${fileName}`); console.error(JSON.parse(e))
     });
   });
 };
