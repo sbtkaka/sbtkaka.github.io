@@ -1,6 +1,6 @@
 const path = require('path');
 const updateDailyReport = require(path.resolve("server", "updateDailyReport"));
-
+updateDailyReport();
 // updateDailyReport('2023-12-31');
 // updateDailyReport('2023-12-30');
 // updateDailyReport('2023-12-29');
@@ -8,13 +8,13 @@ const updateDailyReport = require(path.resolve("server", "updateDailyReport"));
 // updateDailyReport('2023-12-27');
 // updateDailyReport('2023-12-26');
 // updateDailyReport('2023-12-25');
-// updateDailyReport('2023-12-24');
-// updateDailyReport('2023-12-23');
-// updateDailyReport('2023-12-22');
-// updateDailyReport('2023-12-21');
+updateDailyReport('2023-12-24');
+updateDailyReport('2023-12-23');
+updateDailyReport('2023-12-22');
+updateDailyReport('2023-12-21');
 // updateDailyReport('2023-12-20');
-updateDailyReport('2023-12-19');
-updateDailyReport('2023-12-18');
+// updateDailyReport('2023-12-19');
+// updateDailyReport('2023-12-18');
 // updateDailyReport('2023-12-17');
 // updateDailyReport('2023-12-16');
 // updateDailyReport('2023-12-15');
