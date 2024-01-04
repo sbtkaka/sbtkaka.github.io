@@ -11,6 +11,7 @@ const { createRequestInstance } = require(path.resolve(
   "checkOrLogin"
 ));
 const { checkDirExistAndCreate } = require("./checkDirExistAndCreate");
+const { process } = require("./process");
 
 const startOfDay = require("date-fns/startOfDay");
 const startOfYesterday = require("date-fns/startOfYesterday");
@@ -33,8 +34,10 @@ const updateDailyReport = async (specificDate) => {
       gameTypeReq(requestInstance, targetDate),
       gameProviderReq(requestInstance, targetDate),
     ]).then(() => {
+      return process(targetDate)
+    }).then(() => {
       console.log('done');
-    });
+    })
   });
 };
 

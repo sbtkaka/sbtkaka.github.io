@@ -1,6 +1,10 @@
 const path = require('path');
+const path = require("path");
+const CronJob = require("cron").CronJob;
 const updateDailyReport = require(path.resolve("server", "updateDailyReport"));
-// updateDailyReport();
+updateDailyReport();
+// const job = new CronJob("0 0 6 * * *", updateDailyReport, null, true);
+// job.start();
 // updateDailyReport('2024-01-31');
 // updateDailyReport('2024-01-30');
 // updateDailyReport('2024-01-29');
