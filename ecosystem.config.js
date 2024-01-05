@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: '918KissU-Report',
-    script: 'main',
+    script: 'main.js',
     instances: 1,
     autorestart: true,
     watch: false,
