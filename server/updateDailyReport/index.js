@@ -38,6 +38,7 @@ const updateDailyReport = async (specificDate) => {
     }).then(() => {
       console.log('done');
     })
+    .catch((e) => console.error(e))
   });
 };
 
