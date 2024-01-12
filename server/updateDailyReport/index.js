@@ -31,8 +31,8 @@ const updateDailyReport = async (specificDate) => {
     Promise.all([
       summary(requestInstance, targetDate),
       activeMembersReq(requestInstance, targetDate),
-      gameTypeReq(requestInstance, targetDate),
-      gameProviderReq(requestInstance, targetDate),
+      // gameTypeReq(requestInstance, targetDate),
+      // gameProviderReq(requestInstance, targetDate),
     ]).then(() => {
       return process(targetDate)
     }).then(() => {
