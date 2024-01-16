@@ -49,6 +49,9 @@ const checkOrLogin = () => {
                 );
                 resolve({ token, refreshToken });
               })
+              .catch((e)=> {
+                console.error(e)
+              })
           })
           .catch((error) => {
             console.error(error);
