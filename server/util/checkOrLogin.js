@@ -7,6 +7,7 @@ const {
   reportURL,
   username,
   password,
+  otpkey,
 } = require(path.resolve("config.js"));
 
 const checkOrLogin = () => {
@@ -29,8 +30,8 @@ const checkOrLogin = () => {
         console.log("login.");
         axios
           .post(`${baseURL}/${reportURL.login}`, { username, password, sercet: "", verification: "" })
-          .then(({ data: { user: { oneTimePassword, id } } }) => {
-            const otpToken = authenticator.generate(oneTimePassword);
+          .then(({ data: { user: { id } } }) => {
+            const otpToken = authenticator.generate(otpkey);
             console.log(`id: ${id}, otpToken: ${otpToken}`);
             axios
               .post(`${baseURL}/${reportURL.twofa}`, {
@@ -49,7 +50,7 @@ const checkOrLogin = () => {
                 );
                 resolve({ token, refreshToken });
               })
-              .catch((e)=> {
+              .catch((e) => {
                 console.error(e)
               })
           })
