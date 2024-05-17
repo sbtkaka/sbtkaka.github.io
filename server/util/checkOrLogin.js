@@ -10,6 +10,32 @@ const {
   otpkey,
 } = require(path.resolve("config.js"));
 
+const twofa = (id, resolve) => {
+  const otpToken = authenticator.generate(otpkey);
+  console.log(`id: ${id}, otpToken: ${otpToken}`);
+  return axios
+    .post(`${baseURL}/${reportURL.twofa}`, {
+      "operatorId": id,
+      "otp": otpToken
+    })
+    .then(({ data: { token, refreshToken } }) => {
+      fs.writeFile(
+        path.join("authToken.js"),
+        `module.exports = {\n  token: '${token}',\n  refreshToken: '${refreshToken}'\n}`,
+        (e) => {
+          if (e) {
+            console.error(JSON.stringify(e));
+          }
+        }
+      );
+      resolve({ token, refreshToken });
+    })
+    .catch((e) => {
+      console.error(JSON.stringify(e));
+      setTimeout(() => twofa(id, resolve), 3000);
+    })
+}
+
 const checkOrLogin = () => {
   return new Promise((resolve, reject) => {
     const { token, refreshToken } = require(path.resolve("authToken.js"));
@@ -31,28 +57,7 @@ const checkOrLogin = () => {
         axios
           .post(`${baseURL}/${reportURL.login}`, { username, password, sercet: "", verification: "" })
           .then(({ data: { user: { id } } }) => {
-            const otpToken = authenticator.generate(otpkey);
-            console.log(`id: ${id}, otpToken: ${otpToken}`);
-            axios
-              .post(`${baseURL}/${reportURL.twofa}`, {
-                "operatorId": id,
-                "otp": otpToken
-              })
-              .then(({ data: { token, refreshToken } }) => {
-                fs.writeFile(
-                  path.join("authToken.js"),
-                  `module.exports = {\n  token: '${token}',\n  refreshToken: '${refreshToken}'\n}`,
-                  (e) => {
-                    if (e) {
-                      console.error(stringify(e));
-                    }
-                  }
-                );
-                resolve({ token, refreshToken });
-              })
-              .catch((e) => {
-                console.error(e)
-              })
+            return twofa(id, resolve);
           })
           .catch((error) => {
             console.error(error);
