@@ -24,16 +24,30 @@ const twofa = (id, resolve) => {
         `module.exports = {\n  token: '${token}',\n  refreshToken: '${refreshToken}'\n}`,
         (e) => {
           if (e) {
-            console.error(JSON.stringify(e));
+            console.error(e);
           }
         }
       );
       resolve({ token, refreshToken });
     })
     .catch((e) => {
-      console.error(JSON.stringify(e));
+      console.error(e);
       setTimeout(() => twofa(id, resolve), 3000);
     })
+}
+
+const login = (resolve) => {
+  // 憑證過期 重新
+  console.log("login.");
+  return axios
+    .post(`${baseURL}/${reportURL.login}`, { username, password, sercet: "", verification: "" })
+    .then(({ data: { user: { id } } }) => {
+      return twofa(id, resolve);
+    })
+    .catch((error) => {
+      console.error(error);
+      reject({ error, reqName: "login" });
+    });
 }
 
 const checkOrLogin = () => {
@@ -51,19 +65,7 @@ const checkOrLogin = () => {
         console.log("check login status.");
         resolve({ token, refreshToken });
       })
-      .catch(() => {
-        // 憑證過期 重新
-        console.log("login.");
-        axios
-          .post(`${baseURL}/${reportURL.login}`, { username, password, sercet: "", verification: "" })
-          .then(({ data: { user: { id } } }) => {
-            return twofa(id, resolve);
-          })
-          .catch((error) => {
-            console.error(error);
-            reject({ error, reqName: "login" });
-          });
-      });
+      .catch(() => { login(resolve) });
   });
 };
 
