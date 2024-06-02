@@ -36,7 +36,7 @@ const twofa = (id, resolve) => {
     })
 }
 
-const login = (resolve) => {
+const login = (resolve, reject) => {
   // 憑證過期 重新
   console.log("login.");
   return axios
@@ -65,7 +65,7 @@ const checkOrLogin = () => {
         console.log("check login status.");
         resolve({ token, refreshToken });
       })
-      .catch(() => { login(resolve) });
+      .catch(() => { login(resolve, reject) });
   });
 };
 
