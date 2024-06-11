@@ -5,8 +5,8 @@ const format = require("date-fns/format");
 const updateDailyReport = require(path.resolve("server", "updateDailyReport"));
 
 updateDailyReport();
-const job = new CronJob("0 0 6 * * *", updateDailyReport, null, true);
-const job2 = new CronJob("0 0 7 * * *", () => {
+const job = new CronJob("0 0 2 * * *", updateDailyReport, null, true);
+const job2 = new CronJob("0 0 3 * * *", () => {
   let now = new Date();
   exec(
     `
