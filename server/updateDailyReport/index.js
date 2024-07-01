@@ -12,11 +12,13 @@ const { createRequestInstance } = require(path.resolve(
 ));
 const { checkDirExistAndCreate } = require("./checkDirExistAndCreate");
 const { process } = require("./process");
+const format = require("date-fns/format");
 
 const startOfDay = require("date-fns/startOfDay");
 const startOfYesterday = require("date-fns/startOfYesterday");
 
 const updateDailyReport = async (specificDate) => {
+  console.log(`${format(new Date(), 'yyyy-MM-dd HH:mm:SS')}`)
   const requestInstance = await createRequestInstance();
   let targetDate;
   if (/(20)\d{2}-\d{2}-\d{2}/.test(specificDate)) {

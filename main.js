@@ -8,6 +8,7 @@ updateDailyReport();
 const job = new CronJob("0 0 2 * * *", updateDailyReport, null, true);
 const job2 = new CronJob("0 0 3 * * *", () => {
   let now = new Date();
+  console.log(`${format(now, 'yyyy-MM-dd HH:mm:SS')}`)
   exec(
     `
       git add dataSource

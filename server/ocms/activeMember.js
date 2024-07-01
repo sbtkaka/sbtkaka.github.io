@@ -8,7 +8,7 @@ const { reportURL } = require(path.resolve("config.js"));
 const activeMembersReq = (requestInstance, targetDate) => {
   return new Promise((resolve, reject) => {
     requestInstance({
-      url: reportURL.activeMembers,
+      url: reportURL.monthlySummary,
       data: {
         agentId: 4,
         startTime: startOfMonth(targetDate).toISOString(),
@@ -17,7 +17,7 @@ const activeMembersReq = (requestInstance, targetDate) => {
       let fileName = `${format(targetDate, "yyyyMM")}`;
       fs.writeFile(
         path.resolve("dataSource", `active-members${fileName}.json`),
-        JSON.stringify(data),
+        JSON.stringify(data.dailyStats),
         (error) => {
           if (error) reject(error);
           resolve();
