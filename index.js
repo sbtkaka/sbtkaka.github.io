@@ -186,7 +186,7 @@ window.mdToggle = function(date_mmdd) {
 
 // 遊戲報表相關
 const gameKindProcess = function(gameKind) {
-  switch (gameKind) {
+  switch (gameKind.toString()) {
     case '1':
       return '老虎機';
     case '2':

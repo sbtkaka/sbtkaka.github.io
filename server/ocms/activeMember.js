@@ -23,9 +23,7 @@ const activeMembersReq = (requestInstance, targetDate) => {
           resolve();
         }
       );
-    }).catch((e) => {
-      console.log(`active-members${fileName}`); console.error(JSON.parse(e))
-    });;
+    })
   });
 };
 
