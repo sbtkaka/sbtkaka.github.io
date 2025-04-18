@@ -10,8 +10,8 @@ const summary = (requestInstance, targetDate) => {
       url: reportURL.summary,
       data: {
         agentId: 4,
-        endTime: targetDate.toISOString(),
-        startTime: targetDate.toISOString(),
+        endTime: format(targetDate, "yyyy-MM-dd HH:mm:ss.sss"),
+        startTime: format(targetDate, "yyyy-MM-dd HH:mm:ss.sss"),
       },
     }).then(({ data }) => {
       let dirName = `${format(targetDate, "yyyyMM")}`;

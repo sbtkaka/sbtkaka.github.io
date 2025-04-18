@@ -11,7 +11,7 @@ const activeMembersReq = (requestInstance, targetDate) => {
       url: reportURL.monthlySummary,
       data: {
         agentId: 4,
-        startTime: startOfMonth(targetDate).toISOString(),
+        startTime: format(startOfMonth(targetDate), "yyyy-MM-dd HH:mm:ss.sss"),
       },
     }).then(({ data }) => {
       let fileName = `${format(targetDate, "yyyyMM")}`;

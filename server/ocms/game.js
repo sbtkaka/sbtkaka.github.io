@@ -10,8 +10,8 @@ const gameTypeReq = (requestInstance, targetDate) => {
       url: reportURL.game,
       data: {
         agentId: 4,
-        endTime: targetDate.toISOString(),
-        startTime: targetDate.toISOString(),
+        endTime: format(targetDate, "yyyy-MM-dd HH:mm:ss.sss"),
+        startTime: format(targetDate, "yyyy-MM-dd HH:mm:ss.sss"),
         type: 1, // by game type
       },
     }).then(({ data }) => {
@@ -37,8 +37,8 @@ const gameProviderReq = (requestInstance, targetDate) => {
       url: reportURL.game,
       data: {
         agentId: 4,
-        endTime: targetDate.toISOString(),
-        startTime: targetDate.toISOString(),
+        endTime: format(targetDate, "yyyy-MM-dd HH:mm:ss.sss"),
+        startTime: format(targetDate, "yyyy-MM-dd HH:mm:ss.sss"),
         type: 2, // by game provider
       },
     }).then(({ data }) => {
