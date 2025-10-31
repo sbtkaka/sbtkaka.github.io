@@ -4,7 +4,7 @@ const {
   summary,
   gameTypeReq,
   gameProviderReq,
-} = require(path.resolve("server", "ocms", "index.js"));
+} = require(path.resolve("server", "ocms.js"));
 const { createRequestInstance } = require(path.resolve(
   "server",
   "util",
@@ -18,7 +18,7 @@ const startOfDay = require("date-fns/startOfDay");
 const startOfYesterday = require("date-fns/startOfYesterday");
 
 const updateDailyReport = async (specificDate) => {
-  console.log(`${format(new Date(), 'yyyy-MM-dd HH:mm:SS')}`)
+  console.log(`${format(new Date(), "yyyy-MM-dd HH:mm:SS")}`);
   const requestInstance = await createRequestInstance();
   let targetDate;
   if (/(20)\d{2}-\d{2}-\d{2}/.test(specificDate)) {
@@ -37,12 +37,12 @@ const updateDailyReport = async (specificDate) => {
       gameProviderReq(requestInstance, targetDate),
     ])
       .then(() => {
-        return process(targetDate)
+        return process(targetDate);
       })
       .then(() => {
-        console.log('done');
+        console.log("done");
       })
-      .catch((e) => console.error(e))
+      .catch((e) => console.error(e));
   });
 };
 

@@ -1,22 +1,15 @@
 const path = require("path");
 const fs = require("fs");
 const { authenticator } = require("otplib");
-const axios = require("./axios");
-const {
-  baseURL,
-  reportURL,
-  username,
-  password,
-  otpkey,
-} = require(path.resolve("config.js"));
+const api = require("./api");
 
 const twofa = (id, resolve) => {
-  const otpToken = authenticator.generate(otpkey);
+  const otpToken = authenticator.generate(process.env.OTPKEY);
   console.log(`id: ${id}, otpToken: ${otpToken}`);
-  return axios
-    .post(`${baseURL}/${reportURL.twofa}`, {
-      "operatorId": id,
-      "otp": otpToken
+  return api
+    .post(`${process.env.MAIN_URL}/v2/operatorGroup/operator/2FA`, {
+      operatorId: id,
+      otp: otpToken,
     })
     .then(({ data: { token, refreshToken } }) => {
       fs.writeFile(
@@ -33,29 +26,40 @@ const twofa = (id, resolve) => {
     .catch((e) => {
       console.error(e);
       setTimeout(() => twofa(id, resolve), 3000);
-    })
-}
+    });
+};
 
 const login = (resolve, reject) => {
   // 憑證過期 重新
   console.log("login.");
-  return axios
-    .post(`${baseURL}/${reportURL.login}`, { username, password, sercet: "", verification: "" })
-    .then(({ data: { user: { id } } }) => {
-      return twofa(id, resolve);
+  return api
+    .post(`${process.env.MAIN_URL}/operator/auth/login`, {
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      sercet: "",
+      verification: "",
     })
+    .then(
+      ({
+        data: {
+          user: { id },
+        },
+      }) => {
+        return twofa(id, resolve);
+      }
+    )
     .catch((error) => {
       console.error(error);
       reject({ error, reqName: "login" });
     });
-}
+};
 
 const checkOrLogin = () => {
   return new Promise((resolve, reject) => {
     const { token, refreshToken } = require(path.resolve("authToken.js"));
     console.log(`token: ${token}, refreshToken: ${refreshToken}`);
-    axios
-      .get(`${baseURL}/${reportURL.checkLogin}`, {
+    api
+      .get(`${process.env.MAIN_URL}/operator/auth/checkLogin`, {
         headers: {
           authorization: token,
           refreshtoken: refreshToken,
@@ -65,15 +69,17 @@ const checkOrLogin = () => {
         console.log("check login status.");
         resolve({ token, refreshToken });
       })
-      .catch(() => { login(resolve, reject) });
+      .catch(() => {
+        login(resolve, reject);
+      });
   });
 };
 
 const createRequestInstance = () => {
   return new Promise((resolve) => {
     checkOrLogin().then(({ token, refreshToken }) => {
-      const requestInstance = axios.create({
-        baseURL,
+      const requestInstance = api.create({
+        baseURL: process.env.MAIN_URL,
         method: "post",
         headers: {
           "ocms-timezone": "+07:00",
