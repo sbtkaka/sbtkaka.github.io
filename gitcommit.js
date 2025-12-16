@@ -1,7 +1,7 @@
 import { exec } from "child_process";
 import { format } from "date-fns";
 
-const gitcommit = () => {
+export const gitcommit = () => {
   let now = new Date();
   console.log(`${format(now, "yyyy-MM-dd HH:mm:SS")}`);
   exec(
@@ -20,7 +20,5 @@ const gitcommit = () => {
     }
   );
 };
-
-export default gitcommit;
 
 // gitcommit();
