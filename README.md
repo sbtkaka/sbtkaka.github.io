@@ -16,3 +16,8 @@ $ node process.js 202102
 ```
 $ bash ./updateReport.sh
 ```
+
+## cron
+```
+$ npm run cron
+```
